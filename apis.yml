@@ -1,0 +1,59 @@
+name: Allianz Engagement Survey API
+description: API for managing employee engagement surveys within the Allianz organization
+image: https://www.allianz.com/content/dam/onemarketing/azcom/Allianz_com/about-us/logo/allianz-logo.png
+created: '2024-01-15'
+modified: '2024-01-15'
+specificationVersion: '0.16'
+url: https://api.allianz.com/engagement-survey/apis.json
+apis:
+- name: Allianz Engagement Survey API
+  description: Core API for conducting, managing, and analyzing employee engagement surveys
+  image: https://www.allianz.com/content/dam/onemarketing/azcom/Allianz_com/about-us/logo/allianz-logo.png
+  humanUrl: https://developer.allianz.com/engagement-survey
+  baseUrl: https://api.allianz.com/engagement-survey/v1
+  version: 1.0.0
+  tags:
+  - employee engagement
+  - surveys
+  - hr
+  - analytics
+  - feedback
+  properties:
+  - type: X-OpenAPI
+    url: https://api.allianz.com/engagement-survey/v1/openapi.json
+  - type: X-Documentation
+    url: https://developer.allianz.com/engagement-survey/docs
+  - type: X-Authentication
+    url: https://developer.allianz.com/engagement-survey/authentication
+  - type: X-RateLimits
+    url: https://developer.allianz.com/engagement-survey/rate-limits
+  - type: X-ChangeLog
+    url: https://developer.allianz.com/engagement-survey/changelog
+  - type: X-StatusPage
+    url: https://status.allianz.com/engagement-survey
+  - type: X-Pricing
+    url: https://developer.allianz.com/engagement-survey/pricing
+  - type: X-TermsOfService
+    url: https://developer.allianz.com/terms
+  - type: X-PrivacyPolicy
+    url: https://www.allianz.com/privacy-policy
+  - type: X-Support
+    url: https://developer.allianz.com/support
+  - type: X-SDKs
+    url: https://developer.allianz.com/engagement-survey/sdks
+  contact:
+  - type: X-Email
+    url: api-support@allianz.com
+  - type: X-Portal
+    url: https://developer.allianz.com
+maintainers:
+- name: Allianz API Team
+  email: api-team@allianz.com
+  url: https://developer.allianz.com
+tags:
+- employee engagement
+- human resources
+- surveys
+- analytics
+- enterprise
+- internal tools
