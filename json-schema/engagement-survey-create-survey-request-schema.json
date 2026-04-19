@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-create-survey-request-schema.json",
+  "title": "CreateSurveyRequest",
+  "description": "Request body for creating a new engagement survey",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the survey",
+      "example": "2026 Global Engagement Survey"
+    },
+    "survey_type": {
+      "type": "string",
+      "description": "Type of the survey",
+      "enum": [
+        "annual",
+        "pulse",
+        "onboarding",
+        "exit"
+      ],
+      "example": "annual"
+    },
+    "description": {
+      "type": "string",
+      "description": "Survey purpose and scope description",
+      "example": "Annual employee engagement measurement"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Survey open date",
+      "example": "2026-05-01"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Survey close date",
+      "example": "2026-05-31"
+    }
+  },
+  "required": [
+    "title",
+    "survey_type",
+    "start_date",
+    "end_date"
+  ]
+}

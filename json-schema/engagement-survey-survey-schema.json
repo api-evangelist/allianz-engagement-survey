@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-survey-schema.json",
+  "title": "Survey",
+  "description": "An employee engagement survey definition",
+  "type": "object",
+  "properties": {
+    "survey_id": {
+      "type": "string",
+      "description": "Unique identifier for the survey",
+      "example": "survey-500123"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the survey",
+      "example": "2026 Global Engagement Survey"
+    },
+    "survey_type": {
+      "type": "string",
+      "description": "Type of engagement survey",
+      "enum": [
+        "annual",
+        "pulse",
+        "onboarding",
+        "exit"
+      ],
+      "example": "annual"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current lifecycle status of the survey",
+      "enum": [
+        "draft",
+        "active",
+        "closed",
+        "archived"
+      ],
+      "example": "active"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the survey purpose and scope",
+      "example": "Annual employee engagement measurement for all Allianz entities"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when the survey becomes available to participants",
+      "example": "2026-05-01"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when the survey closes",
+      "example": "2026-05-31"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the survey was created",
+      "example": "2026-04-19T10:00:00Z"
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the survey was last modified",
+      "example": "2026-04-19T10:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-participant-schema.json",
+  "title": "Participant",
+  "description": "A survey participant record",
+  "type": "object",
+  "properties": {
+    "participant_id": {
+      "type": "string",
+      "description": "Unique identifier for the participant record",
+      "example": "part-500456"
+    },
+    "employee_id": {
+      "type": "string",
+      "description": "Allianz employee identifier",
+      "example": "emp-123456"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current response status of the participant",
+      "enum": [
+        "invited",
+        "responded",
+        "not_responded"
+      ],
+      "example": "responded"
+    },
+    "invited_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the invitation was sent",
+      "example": "2026-05-01T08:00:00Z"
+    },
+    "responded_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the participant submitted their response",
+      "example": "2026-05-03T14:22:00Z"
+    }
+  }
+}

@@ -1,0 +1,299 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Allianz Engagement Survey"
+  description: "Vocabulary taxonomy for the Allianz Engagement Survey API covering survey lifecycle, participant management, analytics, and action planning."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: allianz-engagement-survey
+      version: "1.0.0"
+      baseUrl: https://api.allianz.com/engagement/v1
+      status: active
+      description: "Employee engagement survey management API"
+
+  resources:
+    - name: surveys
+      description: "Engagement survey definitions and lifecycle management"
+      api: allianz-engagement-survey
+      actions:
+        - list-surveys
+        - create-survey
+        - get-survey
+
+    - name: participants
+      description: "Survey participants and invitation management"
+      api: allianz-engagement-survey
+      actions:
+        - list-participants
+        - add-participants
+
+    - name: responses
+      description: "Anonymized survey response collection"
+      api: allianz-engagement-survey
+      actions:
+        - list-responses
+
+    - name: analytics
+      description: "Aggregated engagement analytics and insights"
+      api: allianz-engagement-survey
+      actions:
+        - get-survey-analytics
+
+    - name: action-plans
+      description: "Improvement action plans from survey findings"
+      api: allianz-engagement-survey
+      actions:
+        - list-action-plans
+        - create-action-plan
+
+  actions:
+    - name: list
+      description: "Retrieve a paginated collection of resources"
+      http_method: GET
+      pattern: read
+
+    - name: create
+      description: "Create a new resource"
+      http_method: POST
+      pattern: write
+
+    - name: get
+      description: "Retrieve a specific resource by identifier"
+      http_method: GET
+      pattern: read
+
+    - name: add
+      description: "Add items to an existing collection"
+      http_method: POST
+      pattern: write
+
+  schemas:
+    core:
+      - name: Survey
+        description: "Employee engagement survey definition and configuration"
+        key_properties:
+          - survey_id
+          - title
+          - survey_type
+          - status
+          - start_date
+          - end_date
+
+      - name: SurveyAnalytics
+        description: "Aggregated engagement analytics results"
+        key_properties:
+          - participation_rate
+          - engagement_score
+          - favorable_percentage
+          - question_scores
+
+      - name: ActionPlan
+        description: "Improvement action plan from survey insights"
+        key_properties:
+          - plan_id
+          - title
+          - status
+          - owner
+          - due_date
+
+    supporting:
+      - name: Participant
+        description: "Survey participant record with response status"
+        key_properties:
+          - participant_id
+          - employee_id
+          - status
+
+      - name: SurveyResponse
+        description: "Anonymized survey response submission"
+        key_properties:
+          - response_id
+          - survey_id
+          - submitted_at
+          - answers
+
+      - name: QuestionScore
+        description: "Per-question analytics score"
+        key_properties:
+          - question_id
+          - score
+          - favorable
+
+  parameters:
+    pagination:
+      - name: limit
+        description: "Maximum number of records to return"
+        type: integer
+      - name: offset
+        description: "Number of records to skip for pagination"
+        type: integer
+
+    filters:
+      - name: status
+        description: "Filter by resource status"
+        type: string
+      - name: survey_type
+        description: "Filter by survey type"
+        type: string
+      - name: business_unit
+        description: "Filter by business unit code"
+        type: string
+      - name: segment_by
+        description: "Segment analytics by dimension"
+        type: string
+
+  enums:
+    survey_types:
+      - annual
+      - pulse
+      - onboarding
+      - exit
+
+    survey_statuses:
+      - draft
+      - active
+      - closed
+      - archived
+
+    participant_statuses:
+      - invited
+      - responded
+      - not_responded
+
+    action_plan_statuses:
+      - not_started
+      - in_progress
+      - completed
+      - cancelled
+
+    segment_dimensions:
+      - business_unit
+      - region
+      - role_level
+      - tenure
+
+  authentication:
+    schemes:
+      - type: OAuth2
+        flow: clientCredentials
+        tokenUrl: https://api.allianz.com/oauth2/token
+        scopes:
+          - surveys:read
+          - surveys:write
+          - responses:read
+          - analytics:read
+          - action_plans:write
+
+capability:
+  workflows:
+    - name: Employee Engagement Workflow
+      file: capabilities/employee-engagement-workflow.yaml
+      description: "End-to-end workflow for HR teams running engagement surveys"
+      apis_combined:
+        - allianz-engagement-survey
+      tool_count: 8
+      personas:
+        - HR Business Partner
+        - People Analytics Analyst
+        - Team Manager
+
+  personas:
+    - id: hr-business-partner
+      name: HR Business Partner
+      description: "HR professional responsible for running engagement surveys and following up with business units"
+      workflows:
+        - Employee Engagement Workflow
+
+    - id: people-analytics-analyst
+      name: People Analytics Analyst
+      description: "Analyst who interprets engagement data and generates insights and recommendations"
+      workflows:
+        - Employee Engagement Workflow
+
+    - id: team-manager
+      name: Team Manager
+      description: "People manager who reviews team-level results and creates action plans"
+      workflows:
+        - Employee Engagement Workflow
+
+  domains:
+    - name: Survey Management
+      description: "Creating and managing employee engagement surveys"
+      resources:
+        - surveys
+        - participants
+
+    - name: Insights and Analytics
+      description: "Analyzing survey results and generating engagement insights"
+      resources:
+        - analytics
+        - responses
+
+    - name: Action Planning
+      description: "Creating and tracking improvement initiatives from survey findings"
+      resources:
+        - action-plans
+
+  namespaces:
+    consumed:
+      - name: allianz-engagement-survey
+        baseUri: https://api.allianz.com/engagement/v1
+    rest_exposed:
+      - name: allianz-employee-engagement-api
+        port: 8080
+    mcp_exposed:
+      - name: allianz-employee-engagement-mcp
+        port: 9090
+
+  binds:
+    - name: ALLIANZ_ENGAGEMENT_CLIENT_ID
+      description: "OAuth2 client ID for engagement survey API access"
+      workflows:
+        - Employee Engagement Workflow
+    - name: ALLIANZ_ENGAGEMENT_CLIENT_SECRET
+      description: "OAuth2 client secret for engagement survey API access"
+      workflows:
+        - Employee Engagement Workflow
+
+crossReference:
+  - resource: surveys
+    operations:
+      - list-surveys
+      - create-survey
+      - get-survey
+    workflows:
+      - Employee Engagement Workflow
+    personas:
+      - HR Business Partner
+      - People Analytics Analyst
+
+  - resource: participants
+    operations:
+      - list-participants
+      - add-participants
+    workflows:
+      - Employee Engagement Workflow
+    personas:
+      - HR Business Partner
+
+  - resource: analytics
+    operations:
+      - get-survey-analytics
+    workflows:
+      - Employee Engagement Workflow
+    personas:
+      - People Analytics Analyst
+      - Team Manager
+
+  - resource: action-plans
+    operations:
+      - list-action-plans
+      - create-action-plan
+    workflows:
+      - Employee Engagement Workflow
+    personas:
+      - Team Manager
+      - HR Business Partner

@@ -1,0 +1,11 @@
+{
+  "survey_id": "survey-500123",
+  "title": "2026 Global Engagement Survey",
+  "survey_type": "annual",
+  "status": "active",
+  "description": "Annual employee engagement measurement for all Allianz entities",
+  "start_date": "2026-05-01",
+  "end_date": "2026-05-31",
+  "created_at": "2026-04-19T10:00:00Z",
+  "modified_at": "2026-04-19T10:00:00Z"
+}

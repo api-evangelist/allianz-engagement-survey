@@ -1,0 +1,312 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Allianz Engagement Survey API"
+  description: "Employee engagement survey lifecycle management including survey creation, participant management, response collection, and analytics."
+  tags:
+    - Human Resources
+    - Surveys
+    - Employee Experience
+    - Analytics
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALLIANZ_ENGAGEMENT_CLIENT_ID: ALLIANZ_ENGAGEMENT_CLIENT_ID
+      ALLIANZ_ENGAGEMENT_CLIENT_SECRET: ALLIANZ_ENGAGEMENT_CLIENT_SECRET
+
+capability:
+  consumes:
+    - type: http
+      namespace: allianz-engagement-survey
+      baseUri: https://api.allianz.com/engagement/v1
+      description: "Allianz Engagement Survey API"
+      authentication:
+        type: bearer
+        token: "{{ALLIANZ_ENGAGEMENT_ACCESS_TOKEN}}"
+      resources:
+        - name: surveys
+          path: /surveys
+          description: "Survey lifecycle management"
+          operations:
+            - name: list-surveys
+              method: GET
+              description: "List engagement surveys with filtering"
+              inputParameters:
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by lifecycle status"
+                - name: survey_type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by survey type"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-survey
+              method: POST
+              description: "Create a new engagement survey"
+              inputParameters:
+                - name: title
+                  in: body
+                  type: string
+                  required: true
+                  description: "Survey title"
+                - name: survey_type
+                  in: body
+                  type: string
+                  required: true
+                  description: "Survey type"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-survey
+              method: GET
+              description: "Retrieve a specific survey by ID"
+              inputParameters:
+                - name: survey_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Survey unique identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: participants
+          path: /surveys/{survey_id}/participants
+          description: "Survey participant management"
+          operations:
+            - name: list-participants
+              method: GET
+              description: "List participants for a survey"
+              inputParameters:
+                - name: survey_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Survey identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: add-participants
+              method: POST
+              description: "Add employees as survey participants"
+              inputParameters:
+                - name: survey_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Survey identifier"
+                - name: employee_ids
+                  in: body
+                  type: array
+                  required: true
+                  description: "List of employee IDs to add"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: analytics
+          path: /surveys/{survey_id}/analytics
+          description: "Survey analytics and reporting"
+          operations:
+            - name: get-survey-analytics
+              method: GET
+              description: "Retrieve engagement analytics for a survey"
+              inputParameters:
+                - name: survey_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Survey identifier"
+                - name: segment_by
+                  in: query
+                  type: string
+                  required: false
+                  description: "Segmentation dimension"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: action-plans
+          path: /surveys/{survey_id}/action-plans
+          description: "Action plan management"
+          operations:
+            - name: list-action-plans
+              method: GET
+              description: "List action plans for a survey"
+              inputParameters:
+                - name: survey_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Survey identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-action-plan
+              method: POST
+              description: "Create an action plan for survey findings"
+              inputParameters:
+                - name: survey_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Survey identifier"
+                - name: title
+                  in: body
+                  type: string
+                  required: true
+                  description: "Action plan title"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: allianz-engagement-survey-rest
+      resources:
+        - path: /v1/surveys
+          name: surveys
+          description: "Survey management endpoints"
+          operations:
+            - method: GET
+              name: list-surveys
+              description: "List engagement surveys"
+              call: "allianz-engagement-survey.list-surveys"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-survey
+              description: "Create a new survey"
+              call: "allianz-engagement-survey.create-survey"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/surveys/{survey_id}/analytics
+          name: survey-analytics
+          description: "Survey analytics endpoints"
+          operations:
+            - method: GET
+              name: get-survey-analytics
+              description: "Get survey analytics"
+              call: "allianz-engagement-survey.get-survey-analytics"
+              with:
+                survey_id: "rest.survey_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: allianz-engagement-survey-mcp
+      transport: http
+      tools:
+        - name: list-surveys
+          description: "List Allianz employee engagement surveys"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.list-surveys"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-survey
+          description: "Create a new employee engagement survey"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "allianz-engagement-survey.create-survey"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-survey
+          description: "Get details of a specific engagement survey"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.get-survey"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-participants
+          description: "List participants and participation status for a survey"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.list-participants"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: add-participants
+          description: "Add employees as participants to a survey and send invitations"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "allianz-engagement-survey.add-participants"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-survey-analytics
+          description: "Retrieve aggregated engagement analytics and scores for a survey"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.get-survey-analytics"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-action-plans
+          description: "List action plans created from survey insights"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.list-action-plans"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-action-plan
+          description: "Create an action plan to address engagement survey findings"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "allianz-engagement-survey.create-action-plan"
+          outputParameters:
+            - type: object
+              mapping: "$."

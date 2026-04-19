@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-survey-analytics-structure.json",
+  "description": "Aggregated analytics and insights for an engagement survey",
+  "properties": {
+    "survey_id": {
+      "type": "string",
+      "description": "Survey being analyzed",
+      "example": "survey-500123"
+    },
+    "participation_rate": {
+      "type": "double",
+      "description": "Percentage of invited employees who responded",
+      "example": 70.1
+    },
+    "engagement_score": {
+      "type": "double",
+      "description": "Overall engagement score out of 100",
+      "example": 76.3
+    },
+    "favorable_percentage": {
+      "type": "double",
+      "description": "Percentage of favorable responses across all questions",
+      "example": 74.8
+    },
+    "question_scores": {
+      "type": "array",
+      "description": "Per-question score breakdown",
+      "items": {
+        "$ref": "#/components/schemas/QuestionScore"
+      }
+    }
+  },
+  "name": "SurveyAnalytics"
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-action-plan-schema.json",
+  "title": "ActionPlan",
+  "description": "An action plan created to address survey findings",
+  "type": "object",
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "description": "Unique identifier for the action plan",
+      "example": "plan-500111"
+    },
+    "survey_id": {
+      "type": "string",
+      "description": "Survey this action plan relates to",
+      "example": "survey-500123"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the action plan",
+      "example": "Improve Manager Communication"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the planned actions",
+      "example": "Increase frequency of team meetings and transparency"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the action plan",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ],
+      "example": "in_progress"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Name of the action plan owner",
+      "example": "Jane Smith"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Target completion date for the action plan",
+      "example": "2026-09-30"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the action plan was created",
+      "example": "2026-04-19T10:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-question-score-schema.json",
+  "title": "QuestionScore",
+  "description": "Score summary for a single survey question",
+  "type": "object",
+  "properties": {
+    "question_id": {
+      "type": "string",
+      "description": "Question identifier",
+      "example": "q-001"
+    },
+    "question": {
+      "type": "string",
+      "description": "The survey question text",
+      "example": "I am proud to work for Allianz"
+    },
+    "score": {
+      "type": "number",
+      "format": "double",
+      "description": "Average score on a 1-5 scale",
+      "example": 4.2
+    },
+    "favorable": {
+      "type": "number",
+      "format": "double",
+      "description": "Percentage of favorable responses (4-5 on Likert scale)",
+      "example": 84.0
+    }
+  }
+}

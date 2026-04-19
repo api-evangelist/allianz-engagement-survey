@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-response-list-structure.json",
+  "description": "Paginated list of anonymized survey responses",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of responses",
+      "example": 876
+    },
+    "items": {
+      "type": "array",
+      "description": "List of anonymized response records",
+      "items": {
+        "$ref": "#/components/schemas/SurveyResponse"
+      }
+    }
+  },
+  "name": "ResponseList"
+}

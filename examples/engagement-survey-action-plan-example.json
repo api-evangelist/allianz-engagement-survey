@@ -1,0 +1,10 @@
+{
+  "plan_id": "plan-500111",
+  "survey_id": "survey-500123",
+  "title": "Improve Manager Communication",
+  "description": "Increase frequency of team meetings and transparency",
+  "status": "in_progress",
+  "owner": "Jane Smith",
+  "due_date": "2026-09-30",
+  "created_at": "2026-04-19T10:00:00Z"
+}

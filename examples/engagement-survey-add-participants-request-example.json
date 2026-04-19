@@ -1,0 +1,7 @@
+{
+  "employee_ids": [
+    "emp-123456",
+    "emp-123457"
+  ],
+  "send_invitation": true
+}

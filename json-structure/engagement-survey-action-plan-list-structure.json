@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-action-plan-list-structure.json",
+  "description": "List of action plans for a survey",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of action plans",
+      "example": 12
+    },
+    "items": {
+      "type": "array",
+      "description": "List of action plan records",
+      "items": {
+        "$ref": "#/components/schemas/ActionPlan"
+      }
+    }
+  },
+  "name": "ActionPlanList"
+}

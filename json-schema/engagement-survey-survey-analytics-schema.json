@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-survey-analytics-schema.json",
+  "title": "SurveyAnalytics",
+  "description": "Aggregated analytics and insights for an engagement survey",
+  "type": "object",
+  "properties": {
+    "survey_id": {
+      "type": "string",
+      "description": "Survey being analyzed",
+      "example": "survey-500123"
+    },
+    "participation_rate": {
+      "type": "number",
+      "format": "double",
+      "description": "Percentage of invited employees who responded",
+      "example": 70.1
+    },
+    "engagement_score": {
+      "type": "number",
+      "format": "double",
+      "description": "Overall engagement score out of 100",
+      "example": 76.3
+    },
+    "favorable_percentage": {
+      "type": "number",
+      "format": "double",
+      "description": "Percentage of favorable responses across all questions",
+      "example": 74.8
+    },
+    "question_scores": {
+      "type": "array",
+      "description": "Per-question score breakdown",
+      "items": {
+        "$ref": "#/components/schemas/QuestionScore"
+      }
+    }
+  }
+}

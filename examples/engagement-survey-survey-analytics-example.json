@@ -1,0 +1,9 @@
+{
+  "survey_id": "survey-500123",
+  "participation_rate": 70.1,
+  "engagement_score": 76.3,
+  "favorable_percentage": 74.8,
+  "question_scores": [
+    "sample-question_scores"
+  ]
+}

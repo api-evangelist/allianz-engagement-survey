@@ -8,15 +8,124 @@ tags:
   - Human Resources
   - Insurance
   - Surveys
+  - Employee Experience
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 description: >-
-  API for managing employee engagement surveys within the Allianz organization,
-  supporting survey creation, management, and analytics.
+  The Allianz Engagement Survey API enables management of employee engagement
+  surveys across the Allianz organization. It provides capabilities for survey
+  lifecycle management, participant management, response collection, and
+  analytics reporting to support Allianz's global employee experience
+  initiatives.
 created: '2024-01-15'
-modified: '2026-03-16'
+modified: '2026-04-19'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: allianz-engagement-survey:engagement-survey-api
+    name: Allianz Engagement Survey API
+    tags:
+      - Surveys
+      - Human Resources
+      - Employee Experience
+      - Analytics
+    properties:
+      - url: https://www.allianz.com/en/careers/working-at-allianz.html
+        type: Documentation
+      - url: openapi/allianz-engagement-survey.yaml
+        type: OpenAPI
+      - url: json-schema/engagement-survey-survey-schema.json
+        type: JSONSchema
+      - url: json-schema/engagement-survey-response-schema.json
+        type: JSONSchema
+      - url: json-schema/engagement-survey-analytics-schema.json
+        type: JSONSchema
+      - url: json-structure/engagement-survey-survey-structure.json
+        type: JSONStructure
+      - url: json-structure/engagement-survey-response-structure.json
+        type: JSONStructure
+      - url: json-ld/allianz-engagement-survey-context.jsonld
+        type: JSONLD
+      - url: examples/engagement-survey-survey-example.json
+        type: Example
+      - url: examples/engagement-survey-analytics-example.json
+        type: Example
+    description: >-
+      REST API for managing the full lifecycle of employee engagement surveys at
+      Allianz. Supports survey creation and configuration, participant management,
+      response collection, results analysis, and reporting across business units
+      and geographies.
+    humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
+    baseURL: https://api.allianz.com/engagement/v1
+
+common:
+  - url: https://www.allianz.com/
+    type: Website
+  - url: https://github.com/allianz
+    type: GitHubOrganization
+  - url: rules/allianz-engagement-survey-spectral-rules.yml
+    type: SpectralRules
+  - url: vocabulary/allianz-engagement-survey-vocabulary.yaml
+    type: Vocabulary
+  - url: capabilities/employee-engagement-workflow.yaml
+    type: NaftikoCapability
+  - type: Features
+    data:
+      - name: Survey Lifecycle Management
+        description: >-
+          Create, configure, publish, and close employee engagement surveys
+          with full lifecycle tracking and audit capabilities.
+      - name: Participant Management
+        description: >-
+          Manage survey participants, send invitations, track response rates,
+          and send reminders to boost participation across business units.
+      - name: Response Collection
+        description: >-
+          Collect structured survey responses with support for multiple
+          question types including Likert scales, open text, and multiple choice.
+      - name: Analytics and Reporting
+        description: >-
+          Generate engagement analytics, participation metrics, and comparative
+          reports across departments, regions, and time periods.
+      - name: Segmentation
+        description: >-
+          Segment survey results by business unit, geography, role, tenure,
+          and demographic dimensions for targeted insights.
+      - name: Action Planning
+        description: >-
+          Track and manage action plans created in response to survey insights
+          to drive employee experience improvements.
+  - type: UseCases
+    data:
+      - name: Annual Engagement Survey
+        description: >-
+          Run company-wide annual employee engagement surveys to measure
+          satisfaction, commitment, and advocacy across all Allianz entities.
+      - name: Pulse Surveys
+        description: >-
+          Deploy frequent short pulse surveys to track engagement trends and
+          respond quickly to changing employee sentiment.
+      - name: Onboarding Surveys
+        description: >-
+          Capture new employee experience feedback during onboarding to
+          improve the joining experience and early retention.
+      - name: Exit Surveys
+        description: >-
+          Collect departing employee feedback to understand attrition drivers
+          and improve retention strategies.
+  - type: Integrations
+    data:
+      - name: Workday
+        description: >-
+          Integration with Workday HCM for automated participant roster
+          management and organizational hierarchy synchronization.
+      - name: Microsoft Teams
+        description: >-
+          Survey notifications and reminders delivered through Microsoft Teams
+          to increase employee participation rates.
+      - name: Power BI
+        description: >-
+          Export engagement analytics to Power BI for advanced visualization
+          and executive dashboard reporting.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

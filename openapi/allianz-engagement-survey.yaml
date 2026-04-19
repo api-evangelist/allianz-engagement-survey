@@ -1,0 +1,1012 @@
+openapi: 3.0.3
+info:
+  title: Allianz Engagement Survey API
+  description: >-
+    REST API for managing the full lifecycle of employee engagement surveys at
+    Allianz. Supports survey creation, participant management, response
+    collection, analytics reporting, and action plan tracking across global
+    business units.
+  version: 1.0.0
+  contact:
+    name: Allianz HR Technology
+    url: https://www.allianz.com/en/careers/working-at-allianz.html
+  x-generated-from: documentation
+servers:
+  - url: https://api.allianz.com/engagement/v1
+    description: Allianz Engagement Survey API production server
+security:
+  - OAuth2: []
+tags:
+  - name: Surveys
+    description: Survey lifecycle management operations
+  - name: Participants
+    description: Survey participant and invitation management operations
+  - name: Responses
+    description: Survey response submission and retrieval operations
+  - name: Analytics
+    description: Survey analytics, reporting, and insights operations
+  - name: Action Plans
+    description: Action plan tracking and management operations
+paths:
+  /surveys:
+    get:
+      operationId: listSurveys
+      summary: Allianz Engagement Survey List Surveys
+      description: >-
+        Retrieve a paginated list of engagement surveys with filtering by
+        status, type, and date range.
+      tags:
+        - Surveys
+      parameters:
+        - name: status
+          in: query
+          required: false
+          description: Filter surveys by lifecycle status
+          schema:
+            type: string
+            enum:
+              - draft
+              - active
+              - closed
+              - archived
+          example: active
+        - name: survey_type
+          in: query
+          required: false
+          description: Filter surveys by type
+          schema:
+            type: string
+            enum:
+              - annual
+              - pulse
+              - onboarding
+              - exit
+          example: annual
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of surveys to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+          example: 20
+        - name: offset
+          in: query
+          required: false
+          description: Number of surveys to skip for pagination
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+      responses:
+        '200':
+          description: Surveys retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyList'
+              examples:
+                ListSurveys200Example:
+                  summary: Default listSurveys 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 5
+                    offset: 0
+                    limit: 20
+                    items:
+                      - survey_id: "survey-500123"
+                        title: "2026 Global Engagement Survey"
+                        survey_type: annual
+                        status: active
+                        created_at: "2026-01-15T10:00:00Z"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+    post:
+      operationId: createSurvey
+      summary: Allianz Engagement Survey Create Survey
+      description: >-
+        Create a new employee engagement survey with configuration for
+        questions, audience targeting, and scheduling.
+      tags:
+        - Surveys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSurveyRequest'
+            examples:
+              CreateSurveyRequestExample:
+                summary: Default createSurvey request
+                x-microcks-default: true
+                value:
+                  title: "2026 Global Engagement Survey"
+                  survey_type: annual
+                  description: "Annual employee engagement measurement for all Allianz entities"
+                  start_date: "2026-05-01"
+                  end_date: "2026-05-31"
+      responses:
+        '201':
+          description: Survey created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Survey'
+              examples:
+                CreateSurvey201Example:
+                  summary: Default createSurvey 201 response
+                  x-microcks-default: true
+                  value:
+                    survey_id: "survey-500123"
+                    title: "2026 Global Engagement Survey"
+                    survey_type: annual
+                    status: draft
+                    created_at: "2026-04-19T10:00:00Z"
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /surveys/{survey_id}:
+    get:
+      operationId: getSurvey
+      summary: Allianz Engagement Survey Get Survey
+      description: Retrieve detailed information about a specific engagement survey.
+      tags:
+        - Surveys
+      parameters:
+        - name: survey_id
+          in: path
+          required: true
+          description: Unique identifier of the survey
+          schema:
+            type: string
+          example: "survey-500123"
+      responses:
+        '200':
+          description: Survey retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Survey'
+              examples:
+                GetSurvey200Example:
+                  summary: Default getSurvey 200 response
+                  x-microcks-default: true
+                  value:
+                    survey_id: "survey-500123"
+                    title: "2026 Global Engagement Survey"
+                    survey_type: annual
+                    status: active
+                    start_date: "2026-05-01"
+                    end_date: "2026-05-31"
+        '404':
+          description: Survey not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /surveys/{survey_id}/participants:
+    get:
+      operationId: listParticipants
+      summary: Allianz Engagement Survey List Participants
+      description: Retrieve the list of participants invited to a specific survey.
+      tags:
+        - Participants
+      parameters:
+        - name: survey_id
+          in: path
+          required: true
+          description: Unique identifier of the survey
+          schema:
+            type: string
+          example: "survey-500123"
+        - name: status
+          in: query
+          required: false
+          description: Filter participants by response status
+          schema:
+            type: string
+            enum:
+              - invited
+              - responded
+              - not_responded
+          example: not_responded
+      responses:
+        '200':
+          description: Participants retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipantList'
+              examples:
+                ListParticipants200Example:
+                  summary: Default listParticipants 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 1250
+                    responded: 876
+                    participation_rate: 70.1
+                    items:
+                      - participant_id: "part-500456"
+                        employee_id: "emp-123456"
+                        status: responded
+                        invited_at: "2026-05-01T08:00:00Z"
+                        responded_at: "2026-05-03T14:22:00Z"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+    post:
+      operationId: addParticipants
+      summary: Allianz Engagement Survey Add Participants
+      description: Add employees as participants to a survey and send invitation emails.
+      tags:
+        - Participants
+      parameters:
+        - name: survey_id
+          in: path
+          required: true
+          description: Unique identifier of the survey
+          schema:
+            type: string
+          example: "survey-500123"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddParticipantsRequest'
+            examples:
+              AddParticipantsRequestExample:
+                summary: Default addParticipants request
+                x-microcks-default: true
+                value:
+                  employee_ids:
+                    - "emp-123456"
+                    - "emp-123457"
+                  send_invitation: true
+      responses:
+        '200':
+          description: Participants added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddParticipantsResponse'
+              examples:
+                AddParticipants200Example:
+                  summary: Default addParticipants 200 response
+                  x-microcks-default: true
+                  value:
+                    added: 2
+                    invitation_sent: true
+                    failed: 0
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /surveys/{survey_id}/responses:
+    get:
+      operationId: listResponses
+      summary: Allianz Engagement Survey List Responses
+      description: Retrieve anonymized survey responses for analysis. Individual responses are never linked to specific employees.
+      tags:
+        - Responses
+      parameters:
+        - name: survey_id
+          in: path
+          required: true
+          description: Unique identifier of the survey
+          schema:
+            type: string
+          example: "survey-500123"
+        - name: business_unit
+          in: query
+          required: false
+          description: Filter responses by business unit code
+          schema:
+            type: string
+          example: "BU-DE-001"
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of responses to return
+          schema:
+            type: integer
+            default: 50
+          example: 50
+      responses:
+        '200':
+          description: Responses retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseList'
+              examples:
+                ListResponses200Example:
+                  summary: Default listResponses 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 876
+                    items:
+                      - response_id: "resp-500789"
+                        survey_id: "survey-500123"
+                        submitted_at: "2026-05-03T14:22:00Z"
+                        answers:
+                          - question_id: "q-001"
+                            score: 4
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /surveys/{survey_id}/analytics:
+    get:
+      operationId: getSurveyAnalytics
+      summary: Allianz Engagement Survey Get Survey Analytics
+      description: >-
+        Retrieve aggregated engagement analytics and insights for a survey,
+        including participation rates, question scores, and trend comparisons.
+      tags:
+        - Analytics
+      parameters:
+        - name: survey_id
+          in: path
+          required: true
+          description: Unique identifier of the survey
+          schema:
+            type: string
+          example: "survey-500123"
+        - name: segment_by
+          in: query
+          required: false
+          description: Segment analytics by this dimension
+          schema:
+            type: string
+            enum:
+              - business_unit
+              - region
+              - role_level
+              - tenure
+          example: business_unit
+      responses:
+        '200':
+          description: Analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyAnalytics'
+              examples:
+                GetSurveyAnalytics200Example:
+                  summary: Default getSurveyAnalytics 200 response
+                  x-microcks-default: true
+                  value:
+                    survey_id: "survey-500123"
+                    participation_rate: 70.1
+                    engagement_score: 76.3
+                    favorable_percentage: 74.8
+                    question_scores:
+                      - question_id: "q-001"
+                        question: "I am proud to work for Allianz"
+                        score: 4.2
+                        favorable: 84.0
+        '404':
+          description: Survey not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /surveys/{survey_id}/action-plans:
+    get:
+      operationId: listActionPlans
+      summary: Allianz Engagement Survey List Action Plans
+      description: Retrieve action plans created in response to survey insights for a given survey.
+      tags:
+        - Action Plans
+      parameters:
+        - name: survey_id
+          in: path
+          required: true
+          description: Unique identifier of the survey
+          schema:
+            type: string
+          example: "survey-500123"
+      responses:
+        '200':
+          description: Action plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlanList'
+              examples:
+                ListActionPlans200Example:
+                  summary: Default listActionPlans 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 12
+                    items:
+                      - plan_id: "plan-500111"
+                        title: "Improve Manager Communication"
+                        status: in_progress
+                        owner: "Jane Smith"
+                        due_date: "2026-09-30"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+    post:
+      operationId: createActionPlan
+      summary: Allianz Engagement Survey Create Action Plan
+      description: Create an action plan to address findings from a survey.
+      tags:
+        - Action Plans
+      parameters:
+        - name: survey_id
+          in: path
+          required: true
+          description: Unique identifier of the survey
+          schema:
+            type: string
+          example: "survey-500123"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateActionPlanRequest'
+            examples:
+              CreateActionPlanRequestExample:
+                summary: Default createActionPlan request
+                x-microcks-default: true
+                value:
+                  title: "Improve Manager Communication"
+                  description: "Increase frequency of team meetings and transparency"
+                  owner_employee_id: "emp-123456"
+                  due_date: "2026-09-30"
+      responses:
+        '201':
+          description: Action plan created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlan'
+              examples:
+                CreateActionPlan201Example:
+                  summary: Default createActionPlan 201 response
+                  x-microcks-default: true
+                  value:
+                    plan_id: "plan-500111"
+                    title: "Improve Manager Communication"
+                    status: not_started
+                    created_at: "2026-04-19T10:00:00Z"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 client credentials for Allianz internal API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.allianz.com/oauth2/token
+          scopes:
+            surveys:read: Read survey definitions and configurations
+            surveys:write: Create and manage surveys
+            responses:read: Read anonymized survey responses
+            analytics:read: Access survey analytics and reporting
+            action_plans:write: Create and manage action plans
+
+  schemas:
+    Survey:
+      title: Survey
+      type: object
+      description: An employee engagement survey definition
+      properties:
+        survey_id:
+          type: string
+          description: Unique identifier for the survey
+          example: "survey-500123"
+        title:
+          type: string
+          description: Title of the survey
+          example: "2026 Global Engagement Survey"
+        survey_type:
+          type: string
+          description: Type of engagement survey
+          enum:
+            - annual
+            - pulse
+            - onboarding
+            - exit
+          example: annual
+        status:
+          type: string
+          description: Current lifecycle status of the survey
+          enum:
+            - draft
+            - active
+            - closed
+            - archived
+          example: active
+        description:
+          type: string
+          description: Description of the survey purpose and scope
+          example: "Annual employee engagement measurement for all Allianz entities"
+        start_date:
+          type: string
+          format: date
+          description: Date when the survey becomes available to participants
+          example: "2026-05-01"
+        end_date:
+          type: string
+          format: date
+          description: Date when the survey closes
+          example: "2026-05-31"
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the survey was created
+          example: "2026-04-19T10:00:00Z"
+        modified_at:
+          type: string
+          format: date-time
+          description: Timestamp when the survey was last modified
+          example: "2026-04-19T10:00:00Z"
+
+    SurveyList:
+      title: SurveyList
+      type: object
+      description: Paginated list of engagement surveys
+      properties:
+        total:
+          type: integer
+          description: Total number of surveys matching the filter
+          example: 5
+        offset:
+          type: integer
+          description: Current pagination offset
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number returned per page
+          example: 20
+        items:
+          type: array
+          description: List of survey objects
+          items:
+            $ref: '#/components/schemas/Survey'
+
+    CreateSurveyRequest:
+      title: CreateSurveyRequest
+      type: object
+      description: Request body for creating a new engagement survey
+      required:
+        - title
+        - survey_type
+        - start_date
+        - end_date
+      properties:
+        title:
+          type: string
+          description: Title of the survey
+          example: "2026 Global Engagement Survey"
+        survey_type:
+          type: string
+          description: Type of the survey
+          enum:
+            - annual
+            - pulse
+            - onboarding
+            - exit
+          example: annual
+        description:
+          type: string
+          description: Survey purpose and scope description
+          example: "Annual employee engagement measurement"
+        start_date:
+          type: string
+          format: date
+          description: Survey open date
+          example: "2026-05-01"
+        end_date:
+          type: string
+          format: date
+          description: Survey close date
+          example: "2026-05-31"
+
+    Participant:
+      title: Participant
+      type: object
+      description: A survey participant record
+      properties:
+        participant_id:
+          type: string
+          description: Unique identifier for the participant record
+          example: "part-500456"
+        employee_id:
+          type: string
+          description: Allianz employee identifier
+          example: "emp-123456"
+        status:
+          type: string
+          description: Current response status of the participant
+          enum:
+            - invited
+            - responded
+            - not_responded
+          example: responded
+        invited_at:
+          type: string
+          format: date-time
+          description: Timestamp when the invitation was sent
+          example: "2026-05-01T08:00:00Z"
+        responded_at:
+          type: string
+          format: date-time
+          description: Timestamp when the participant submitted their response
+          example: "2026-05-03T14:22:00Z"
+
+    ParticipantList:
+      title: ParticipantList
+      type: object
+      description: List of survey participants with participation statistics
+      properties:
+        total:
+          type: integer
+          description: Total number of invited participants
+          example: 1250
+        responded:
+          type: integer
+          description: Number of participants who responded
+          example: 876
+        participation_rate:
+          type: number
+          format: double
+          description: Percentage of participants who responded
+          example: 70.1
+        items:
+          type: array
+          description: List of participant records
+          items:
+            $ref: '#/components/schemas/Participant'
+
+    AddParticipantsRequest:
+      title: AddParticipantsRequest
+      type: object
+      description: Request body to add participants to a survey
+      required:
+        - employee_ids
+      properties:
+        employee_ids:
+          type: array
+          description: List of employee IDs to add as participants
+          items:
+            type: string
+          example:
+            - "emp-123456"
+            - "emp-123457"
+        send_invitation:
+          type: boolean
+          description: Whether to send invitation emails immediately
+          example: true
+
+    AddParticipantsResponse:
+      title: AddParticipantsResponse
+      type: object
+      description: Result of adding participants to a survey
+      properties:
+        added:
+          type: integer
+          description: Number of participants successfully added
+          example: 2
+        invitation_sent:
+          type: boolean
+          description: Whether invitation emails were sent
+          example: true
+        failed:
+          type: integer
+          description: Number of employees that could not be added
+          example: 0
+
+    SurveyResponse:
+      title: SurveyResponse
+      type: object
+      description: An anonymized survey response submission
+      properties:
+        response_id:
+          type: string
+          description: Unique identifier for the response
+          example: "resp-500789"
+        survey_id:
+          type: string
+          description: Survey this response belongs to
+          example: "survey-500123"
+        submitted_at:
+          type: string
+          format: date-time
+          description: Timestamp when the response was submitted
+          example: "2026-05-03T14:22:00Z"
+        answers:
+          type: array
+          description: List of question answers
+          items:
+            $ref: '#/components/schemas/Answer'
+
+    Answer:
+      title: Answer
+      type: object
+      description: An individual question answer within a survey response
+      properties:
+        question_id:
+          type: string
+          description: Identifier of the question being answered
+          example: "q-001"
+        score:
+          type: integer
+          description: Numeric score on a 1-5 Likert scale
+          minimum: 1
+          maximum: 5
+          example: 4
+        text_response:
+          type: string
+          description: Open text response for free-text questions
+          example: "The team culture is very collaborative"
+
+    ResponseList:
+      title: ResponseList
+      type: object
+      description: Paginated list of anonymized survey responses
+      properties:
+        total:
+          type: integer
+          description: Total number of responses
+          example: 876
+        items:
+          type: array
+          description: List of anonymized response records
+          items:
+            $ref: '#/components/schemas/SurveyResponse'
+
+    SurveyAnalytics:
+      title: SurveyAnalytics
+      type: object
+      description: Aggregated analytics and insights for an engagement survey
+      properties:
+        survey_id:
+          type: string
+          description: Survey being analyzed
+          example: "survey-500123"
+        participation_rate:
+          type: number
+          format: double
+          description: Percentage of invited employees who responded
+          example: 70.1
+        engagement_score:
+          type: number
+          format: double
+          description: Overall engagement score out of 100
+          example: 76.3
+        favorable_percentage:
+          type: number
+          format: double
+          description: Percentage of favorable responses across all questions
+          example: 74.8
+        question_scores:
+          type: array
+          description: Per-question score breakdown
+          items:
+            $ref: '#/components/schemas/QuestionScore'
+
+    QuestionScore:
+      title: QuestionScore
+      type: object
+      description: Score summary for a single survey question
+      properties:
+        question_id:
+          type: string
+          description: Question identifier
+          example: "q-001"
+        question:
+          type: string
+          description: The survey question text
+          example: "I am proud to work for Allianz"
+        score:
+          type: number
+          format: double
+          description: Average score on a 1-5 scale
+          example: 4.2
+        favorable:
+          type: number
+          format: double
+          description: Percentage of favorable responses (4-5 on Likert scale)
+          example: 84.0
+
+    ActionPlan:
+      title: ActionPlan
+      type: object
+      description: An action plan created to address survey findings
+      properties:
+        plan_id:
+          type: string
+          description: Unique identifier for the action plan
+          example: "plan-500111"
+        survey_id:
+          type: string
+          description: Survey this action plan relates to
+          example: "survey-500123"
+        title:
+          type: string
+          description: Title of the action plan
+          example: "Improve Manager Communication"
+        description:
+          type: string
+          description: Detailed description of the planned actions
+          example: "Increase frequency of team meetings and transparency"
+        status:
+          type: string
+          description: Current status of the action plan
+          enum:
+            - not_started
+            - in_progress
+            - completed
+            - cancelled
+          example: in_progress
+        owner:
+          type: string
+          description: Name of the action plan owner
+          example: "Jane Smith"
+        due_date:
+          type: string
+          format: date
+          description: Target completion date for the action plan
+          example: "2026-09-30"
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the action plan was created
+          example: "2026-04-19T10:00:00Z"
+
+    ActionPlanList:
+      title: ActionPlanList
+      type: object
+      description: List of action plans for a survey
+      properties:
+        total:
+          type: integer
+          description: Total number of action plans
+          example: 12
+        items:
+          type: array
+          description: List of action plan records
+          items:
+            $ref: '#/components/schemas/ActionPlan'
+
+    CreateActionPlanRequest:
+      title: CreateActionPlanRequest
+      type: object
+      description: Request body for creating a new action plan
+      required:
+        - title
+        - owner_employee_id
+        - due_date
+      properties:
+        title:
+          type: string
+          description: Title of the action plan
+          example: "Improve Manager Communication"
+        description:
+          type: string
+          description: Description of planned actions
+          example: "Increase frequency of team meetings and transparency"
+        owner_employee_id:
+          type: string
+          description: Employee ID of the action plan owner
+          example: "emp-123456"
+        due_date:
+          type: string
+          format: date
+          description: Target completion date
+          example: "2026-09-30"
+
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: "The specified survey_id does not exist"
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: "req-500999"

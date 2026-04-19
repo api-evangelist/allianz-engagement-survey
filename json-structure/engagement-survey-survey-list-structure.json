@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-survey-list-structure.json",
+  "description": "Paginated list of engagement surveys",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of surveys matching the filter",
+      "example": 5
+    },
+    "offset": {
+      "type": "integer",
+      "description": "Current pagination offset",
+      "example": 0
+    },
+    "limit": {
+      "type": "integer",
+      "description": "Maximum number returned per page",
+      "example": 20
+    },
+    "items": {
+      "type": "array",
+      "description": "List of survey objects",
+      "items": {
+        "$ref": "#/components/schemas/Survey"
+      }
+    }
+  },
+  "name": "SurveyList"
+}

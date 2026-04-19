@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-participant-list-structure.json",
+  "description": "List of survey participants with participation statistics",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of invited participants",
+      "example": 1250
+    },
+    "responded": {
+      "type": "integer",
+      "description": "Number of participants who responded",
+      "example": 876
+    },
+    "participation_rate": {
+      "type": "double",
+      "description": "Percentage of participants who responded",
+      "example": 70.1
+    },
+    "items": {
+      "type": "array",
+      "description": "List of participant records",
+      "items": {
+        "$ref": "#/components/schemas/Participant"
+      }
+    }
+  },
+  "name": "ParticipantList"
+}

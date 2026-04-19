@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-add-participants-request-schema.json",
+  "title": "AddParticipantsRequest",
+  "description": "Request body to add participants to a survey",
+  "type": "object",
+  "properties": {
+    "employee_ids": {
+      "type": "array",
+      "description": "List of employee IDs to add as participants",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "emp-123456",
+        "emp-123457"
+      ]
+    },
+    "send_invitation": {
+      "type": "boolean",
+      "description": "Whether to send invitation emails immediately",
+      "example": true
+    }
+  },
+  "required": [
+    "employee_ids"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-survey-response-structure.json",
+  "description": "An anonymized survey response submission",
+  "properties": {
+    "response_id": {
+      "type": "string",
+      "description": "Unique identifier for the response",
+      "example": "resp-500789"
+    },
+    "survey_id": {
+      "type": "string",
+      "description": "Survey this response belongs to",
+      "example": "survey-500123"
+    },
+    "submitted_at": {
+      "type": "datetime",
+      "description": "Timestamp when the response was submitted",
+      "example": "2026-05-03T14:22:00Z"
+    },
+    "answers": {
+      "type": "array",
+      "description": "List of question answers",
+      "items": {
+        "$ref": "#/components/schemas/Answer"
+      }
+    }
+  },
+  "name": "SurveyResponse"
+}

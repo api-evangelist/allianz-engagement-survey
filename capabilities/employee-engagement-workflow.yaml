@@ -1,0 +1,194 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Allianz Employee Engagement Workflow"
+  description: "Workflow capability for HR teams running employee engagement surveys at Allianz, covering survey planning, participant management, results analysis, and action plan tracking."
+  tags:
+    - Human Resources
+    - Employee Experience
+    - Surveys
+    - Analytics
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALLIANZ_ENGAGEMENT_CLIENT_ID: ALLIANZ_ENGAGEMENT_CLIENT_ID
+      ALLIANZ_ENGAGEMENT_CLIENT_SECRET: ALLIANZ_ENGAGEMENT_CLIENT_SECRET
+
+capability:
+  consumes:
+    - import: allianz-engagement-survey
+      location: ./shared/engagement-survey.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: allianz-employee-engagement-api
+      description: "Unified REST API for Allianz employee engagement survey workflows."
+      resources:
+        - path: /v1/surveys
+          name: surveys
+          description: "Survey management for HR teams"
+          operations:
+            - method: GET
+              name: list-surveys
+              description: "List all engagement surveys"
+              call: "allianz-engagement-survey.list-surveys"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-survey
+              description: "Create a new engagement survey"
+              call: "allianz-engagement-survey.create-survey"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/surveys/{survey_id}/participants
+          name: participants
+          description: "Participant management for a survey"
+          operations:
+            - method: GET
+              name: list-participants
+              description: "List participants and response status"
+              call: "allianz-engagement-survey.list-participants"
+              with:
+                survey_id: "rest.survey_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: add-participants
+              description: "Add employees as survey participants"
+              call: "allianz-engagement-survey.add-participants"
+              with:
+                survey_id: "rest.survey_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/surveys/{survey_id}/analytics
+          name: analytics
+          description: "Survey analytics and reporting"
+          operations:
+            - method: GET
+              name: get-analytics
+              description: "Get engagement analytics for a survey"
+              call: "allianz-engagement-survey.get-survey-analytics"
+              with:
+                survey_id: "rest.survey_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/surveys/{survey_id}/action-plans
+          name: action-plans
+          description: "Action plan management"
+          operations:
+            - method: GET
+              name: list-action-plans
+              description: "List action plans for a survey"
+              call: "allianz-engagement-survey.list-action-plans"
+              with:
+                survey_id: "rest.survey_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-action-plan
+              description: "Create an action plan from survey insights"
+              call: "allianz-engagement-survey.create-action-plan"
+              with:
+                survey_id: "rest.survey_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: allianz-employee-engagement-mcp
+      transport: http
+      description: "MCP server for AI-assisted employee engagement survey workflows."
+      tools:
+        - name: list-engagement-surveys
+          description: "List all Allianz employee engagement surveys with status and type filtering"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.list-surveys"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-engagement-survey
+          description: "Create a new annual, pulse, onboarding, or exit engagement survey"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "allianz-engagement-survey.create-survey"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-engagement-survey
+          description: "Get details and configuration of a specific engagement survey"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.get-survey"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-survey-participants
+          description: "List participants and track who has responded to a survey"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.list-participants"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: add-survey-participants
+          description: "Add employees to a survey and send invitation emails"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "allianz-engagement-survey.add-participants"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-survey-analytics
+          description: "Get aggregated engagement scores, participation rates, and insights for a survey"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.get-survey-analytics"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-action-plans
+          description: "List improvement action plans created from survey findings"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-engagement-survey.list-action-plans"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-action-plan
+          description: "Create an action plan to address employee engagement survey findings"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "allianz-engagement-survey.create-action-plan"
+          outputParameters:
+            - type: object
+              mapping: "$."

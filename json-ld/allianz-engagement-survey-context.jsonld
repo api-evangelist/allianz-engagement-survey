@@ -1,0 +1,181 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "allianz": "https://api.allianz.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "QuestionScore": "allianz:QuestionScore",
+    "ParticipantList": "allianz:ParticipantList",
+    "CreateSurveyRequest": "allianz:CreateSurveyRequest",
+    "SurveyResponse": "allianz:SurveyResponse",
+    "CreateActionPlanRequest": "allianz:CreateActionPlanRequest",
+    "ResponseList": "allianz:ResponseList",
+    "Participant": "allianz:Participant",
+    "AddParticipantsResponse": "allianz:AddParticipantsResponse",
+    "Survey": "allianz:Survey",
+    "AddParticipantsRequest": "allianz:AddParticipantsRequest",
+    "SurveyList": "allianz:SurveyList",
+    "Answer": "allianz:Answer",
+    "SurveyAnalytics": "allianz:SurveyAnalytics",
+    "ActionPlan": "allianz:ActionPlan",
+    "ActionPlanList": "allianz:ActionPlanList",
+    "questionId": {
+      "@id": "allianz:question_id",
+      "@type": "xsd:string"
+    },
+    "question": {
+      "@id": "allianz:question",
+      "@type": "xsd:string"
+    },
+    "score": {
+      "@id": "allianz:score",
+      "@type": "xsd:double"
+    },
+    "favorable": {
+      "@id": "allianz:favorable",
+      "@type": "xsd:double"
+    },
+    "total": {
+      "@id": "allianz:total",
+      "@type": "xsd:integer"
+    },
+    "responded": {
+      "@id": "allianz:responded",
+      "@type": "xsd:integer"
+    },
+    "participationRate": {
+      "@id": "allianz:participation_rate",
+      "@type": "xsd:double"
+    },
+    "items": {
+      "@id": "allianz:items",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "allianz:title",
+      "@type": "xsd:string"
+    },
+    "surveyType": {
+      "@id": "allianz:survey_type",
+      "@type": "xsd:string"
+    },
+    "description": "schema:description",
+    "startDate": {
+      "@id": "allianz:start_date",
+      "@type": "xsd:date"
+    },
+    "endDate": {
+      "@id": "allianz:end_date",
+      "@type": "xsd:date"
+    },
+    "responseId": {
+      "@id": "allianz:response_id",
+      "@type": "xsd:string"
+    },
+    "surveyId": {
+      "@id": "allianz:survey_id",
+      "@type": "xsd:string"
+    },
+    "submittedAt": {
+      "@id": "allianz:submitted_at",
+      "@type": "xsd:dateTime"
+    },
+    "answers": {
+      "@id": "allianz:answers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "ownerEmployeeId": {
+      "@id": "allianz:owner_employee_id",
+      "@type": "xsd:string"
+    },
+    "dueDate": {
+      "@id": "allianz:due_date",
+      "@type": "xsd:date"
+    },
+    "participantId": {
+      "@id": "allianz:participant_id",
+      "@type": "xsd:string"
+    },
+    "employeeId": {
+      "@id": "allianz:employee_id",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "allianz:status",
+      "@type": "xsd:string"
+    },
+    "invitedAt": {
+      "@id": "allianz:invited_at",
+      "@type": "xsd:dateTime"
+    },
+    "respondedAt": {
+      "@id": "allianz:responded_at",
+      "@type": "xsd:dateTime"
+    },
+    "added": {
+      "@id": "allianz:added",
+      "@type": "xsd:integer"
+    },
+    "invitationSent": {
+      "@id": "allianz:invitation_sent",
+      "@type": "xsd:boolean"
+    },
+    "failed": {
+      "@id": "allianz:failed",
+      "@type": "xsd:integer"
+    },
+    "createdAt": {
+      "@id": "allianz:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "modifiedAt": {
+      "@id": "allianz:modified_at",
+      "@type": "xsd:dateTime"
+    },
+    "employeeIds": {
+      "@id": "allianz:employee_ids",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "sendInvitation": {
+      "@id": "allianz:send_invitation",
+      "@type": "xsd:boolean"
+    },
+    "offset": {
+      "@id": "allianz:offset",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "allianz:limit",
+      "@type": "xsd:integer"
+    },
+    "textResponse": {
+      "@id": "allianz:text_response",
+      "@type": "xsd:string"
+    },
+    "engagementScore": {
+      "@id": "allianz:engagement_score",
+      "@type": "xsd:double"
+    },
+    "favorablePercentage": {
+      "@id": "allianz:favorable_percentage",
+      "@type": "xsd:double"
+    },
+    "questionScores": {
+      "@id": "allianz:question_scores",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "planId": {
+      "@id": "allianz:plan_id",
+      "@type": "xsd:string"
+    },
+    "owner": {
+      "@id": "allianz:owner",
+      "@type": "xsd:string"
+    }
+  }
+}

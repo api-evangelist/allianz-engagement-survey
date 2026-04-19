@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-create-action-plan-request-structure.json",
+  "description": "Request body for creating a new action plan",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the action plan",
+      "example": "Improve Manager Communication"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of planned actions",
+      "example": "Increase frequency of team meetings and transparency"
+    },
+    "owner_employee_id": {
+      "type": "string",
+      "description": "Employee ID of the action plan owner",
+      "example": "emp-123456"
+    },
+    "due_date": {
+      "type": "date",
+      "description": "Target completion date",
+      "example": "2026-09-30"
+    }
+  },
+  "required": [
+    "title",
+    "owner_employee_id",
+    "due_date"
+  ],
+  "name": "CreateActionPlanRequest"
+}

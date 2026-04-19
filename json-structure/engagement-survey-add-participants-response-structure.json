@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-add-participants-response-structure.json",
+  "description": "Result of adding participants to a survey",
+  "properties": {
+    "added": {
+      "type": "integer",
+      "description": "Number of participants successfully added",
+      "example": 2
+    },
+    "invitation_sent": {
+      "type": "boolean",
+      "description": "Whether invitation emails were sent",
+      "example": true
+    },
+    "failed": {
+      "type": "integer",
+      "description": "Number of employees that could not be added",
+      "example": 0
+    }
+  },
+  "name": "AddParticipantsResponse"
+}

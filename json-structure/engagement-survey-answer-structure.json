@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-structure/engagement-survey-answer-structure.json",
+  "description": "An individual question answer within a survey response",
+  "properties": {
+    "question_id": {
+      "type": "string",
+      "description": "Identifier of the question being answered",
+      "example": "q-001"
+    },
+    "score": {
+      "type": "integer",
+      "description": "Numeric score on a 1-5 Likert scale",
+      "minimum": 1,
+      "maximum": 5,
+      "example": 4
+    },
+    "text_response": {
+      "type": "string",
+      "description": "Open text response for free-text questions",
+      "example": "The team culture is very collaborative"
+    }
+  },
+  "name": "Answer"
+}

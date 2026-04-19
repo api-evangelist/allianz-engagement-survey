@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-participant-list-schema.json",
+  "title": "ParticipantList",
+  "description": "List of survey participants with participation statistics",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of invited participants",
+      "example": 1250
+    },
+    "responded": {
+      "type": "integer",
+      "description": "Number of participants who responded",
+      "example": 876
+    },
+    "participation_rate": {
+      "type": "number",
+      "format": "double",
+      "description": "Percentage of participants who responded",
+      "example": 70.1
+    },
+    "items": {
+      "type": "array",
+      "description": "List of participant records",
+      "items": {
+        "$ref": "#/components/schemas/Participant"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/json-schema/engagement-survey-survey-response-schema.json",
+  "title": "SurveyResponse",
+  "description": "An anonymized survey response submission",
+  "type": "object",
+  "properties": {
+    "response_id": {
+      "type": "string",
+      "description": "Unique identifier for the response",
+      "example": "resp-500789"
+    },
+    "survey_id": {
+      "type": "string",
+      "description": "Survey this response belongs to",
+      "example": "survey-500123"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the response was submitted",
+      "example": "2026-05-03T14:22:00Z"
+    },
+    "answers": {
+      "type": "array",
+      "description": "List of question answers",
+      "items": {
+        "$ref": "#/components/schemas/Answer"
+      }
+    }
+  }
+}
