@@ -1,0 +1,32 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  Probed /.well-known/ discovery surface on baseURL host (api.allianz.com) and
+  the documentation host (www.allianz.com) on 2026-06-20.
+hosts:
+  - host: https://api.allianz.com
+    note: >-
+      Host did not resolve / no connection (curl exit, HTTP 000) for all
+      probed paths; the baseURL is not a reachable public endpoint.
+    documents:
+      - path: /.well-known/security.txt
+        status: 000
+      - path: /.well-known/openid-configuration
+        status: 000
+      - path: /.well-known/oauth-authorization-server
+        status: 000
+      - path: /.well-known/api-catalog
+        status: 000
+      - path: /.well-known/ai-plugin.json
+        status: 000
+  - host: https://www.allianz.com
+    note: >-
+      Corporate site returns 403 (WAF/bot protection) to automated requests;
+      no retrievable well-known document.
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /security.txt
+        status: 403
+# No 200 responses; no raw well-known files were saved.
+documents: []

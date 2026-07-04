@@ -1,0 +1,39 @@
+generated: '2026-06-20'
+method: derived
+status: candidate
+source: openapi/allianz-engagement-survey.yaml
+# No official hosted/remote MCP server was found (no listing in the MCP
+# registry, @modelcontextprotocol packages, or Allianz docs). The tools below
+# are DERIVED one-per-operationId from the OpenAPI spec as a candidate surface.
+server:
+  name: allianz-engagement-survey
+  transport: http
+  url: null
+tools:
+  - name: list_surveys
+    description: Retrieve a paginated list of engagement surveys with filtering by status, type, and date range.
+    source_operation: openapi/allianz-engagement-survey.yaml#listSurveys
+  - name: create_survey
+    description: Create a new employee engagement survey with configuration for questions, audience targeting, and scheduling.
+    source_operation: openapi/allianz-engagement-survey.yaml#createSurvey
+  - name: get_survey
+    description: Retrieve detailed information about a specific engagement survey.
+    source_operation: openapi/allianz-engagement-survey.yaml#getSurvey
+  - name: list_participants
+    description: Retrieve the list of participants invited to a specific survey.
+    source_operation: openapi/allianz-engagement-survey.yaml#listParticipants
+  - name: add_participants
+    description: Add employees as participants to a survey and send invitation emails.
+    source_operation: openapi/allianz-engagement-survey.yaml#addParticipants
+  - name: list_responses
+    description: Retrieve anonymized survey responses for analysis.
+    source_operation: openapi/allianz-engagement-survey.yaml#listResponses
+  - name: get_survey_analytics
+    description: Retrieve aggregated engagement analytics and insights for a survey.
+    source_operation: openapi/allianz-engagement-survey.yaml#getSurveyAnalytics
+  - name: list_action_plans
+    description: Retrieve action plans created in response to survey insights for a given survey.
+    source_operation: openapi/allianz-engagement-survey.yaml#listActionPlans
+  - name: create_action_plan
+    description: Create an action plan to address findings from a survey.
+    source_operation: openapi/allianz-engagement-survey.yaml#createActionPlan

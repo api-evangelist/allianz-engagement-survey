@@ -1,0 +1,38 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/allianz-engagement-survey.yaml
+# Standards conformance DERIVED from the OpenAPI definition, vocabulary, and
+# tags. No explicit third-party compliance claims were retrievable from the
+# provider docs host (www.allianz.com returns 403 to automated requests).
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      components.securitySchemes.OAuth2 type oauth2 with clientCredentials
+      flow and scoped access (surveys:read/write, responses:read, etc.).
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect id_token or openid-configuration discovery.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use a custom application/json ErrorResponse schema
+      (error/message/request_id), not application/problem+json.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      listSurveys exposes limit/offset with total in SurveyList; listResponses
+      exposes a limit parameter.
+  - id: idempotency
+    conforms: false
+    evidence: No Idempotency-Key header defined on POST operations.
+  - id: scim2
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: json-api
+    conforms: false
+  - id: fhir-r4
+    conforms: false

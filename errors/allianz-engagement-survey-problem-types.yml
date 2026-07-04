@@ -1,0 +1,35 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/allianz-engagement-survey.yaml
+# DERIVED from the OpenAPI 4xx responses. The API returns a custom
+# application/json ErrorResponse (error, message, request_id) rather than
+# RFC 9457 application/problem+json, so format is 'custom'.
+format: custom
+error_schema: openapi/allianz-engagement-survey.yaml#/components/schemas/ErrorResponse
+problems:
+  - status: 400
+    title: Invalid request
+    description: Request parameters or body failed validation.
+    source_operations:
+      - openapi/allianz-engagement-survey.yaml#createSurvey
+      - openapi/allianz-engagement-survey.yaml#addParticipants
+      - openapi/allianz-engagement-survey.yaml#createActionPlan
+  - status: 401
+    title: Unauthorized
+    description: Missing or invalid OAuth2 access token.
+    source_operations:
+      - openapi/allianz-engagement-survey.yaml#listSurveys
+      - openapi/allianz-engagement-survey.yaml#createSurvey
+      - openapi/allianz-engagement-survey.yaml#getSurvey
+      - openapi/allianz-engagement-survey.yaml#listParticipants
+      - openapi/allianz-engagement-survey.yaml#addParticipants
+      - openapi/allianz-engagement-survey.yaml#listResponses
+      - openapi/allianz-engagement-survey.yaml#getSurveyAnalytics
+      - openapi/allianz-engagement-survey.yaml#listActionPlans
+      - openapi/allianz-engagement-survey.yaml#createActionPlan
+  - status: 404
+    title: Resource not found
+    description: The specified survey (or related resource) does not exist.
+    source_operations:
+      - openapi/allianz-engagement-survey.yaml#getSurvey
+      - openapi/allianz-engagement-survey.yaml#getSurveyAnalytics

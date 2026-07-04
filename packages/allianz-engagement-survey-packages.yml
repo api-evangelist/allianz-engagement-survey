@@ -1,0 +1,16 @@
+generated: '2026-06-20'
+method: none
+source: >-
+  Probed npm, PyPI, RubyGems, crates.io, NuGet, Packagist for first-party
+  Allianz Engagement Survey client libraries; apis.yml carries no SDK/CLI/
+  SourceCode links to derive from.
+# No first-party client libraries were found on public package registries.
+# Registries probed 2026-06-20 (all negative):
+#   npm       @allianz/engagement-survey        -> 404
+#   PyPI      allianz-engagement-survey          -> 404
+#   PyPI      allianz-engagement                 -> 404
+#   RubyGems  allianz-engagement-survey          -> 404
+#   crates.io allianz-engagement-survey          -> 403 (not found)
+#   NuGet     Allianz.EngagementSurvey           -> 404
+#   Packagist allianz/engagement-survey          -> 404
+packages: []

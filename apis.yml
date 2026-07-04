@@ -18,7 +18,7 @@ description: >-
   analytics reporting to support Allianz's global employee experience
   initiatives.
 created: '2024-01-15'
-modified: '2026-04-19'
+modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
   - aid: allianz-engagement-survey:engagement-survey-api
@@ -49,6 +49,16 @@ apis:
         type: Example
       - url: examples/engagement-survey-analytics-example.json
         type: Example
+      - url: overlays/allianz-engagement-survey-engagement-survey-api-overlay.yaml
+        type: Overlay
+      - url: mcp/allianz-engagement-survey-mcp.yml
+        type: MCPServer
+      - url: conformance/allianz-engagement-survey-conformance.yml
+        type: Conformance
+      - url: errors/allianz-engagement-survey-problem-types.yml
+        type: ErrorCatalog
+      - url: lifecycle/allianz-engagement-survey-lifecycle.yml
+        type: Lifecycle
     description: >-
       REST API for managing the full lifecycle of employee engagement surveys at
       Allianz. Supports survey creation and configuration, participant management,
@@ -126,6 +136,14 @@ common:
         description: >-
           Export engagement analytics to Power BI for advanced visualization
           and executive dashboard reporting.
+  - url: https://www.allianz.com/en/press.html
+    type: Blog
+  - url: packages/allianz-engagement-survey-packages.yml
+    type: Packages
+  - url: well-known/allianz-engagement-survey-well-known.yml
+    type: WellKnown
+  - url: llms/allianz-engagement-survey-llms.txt
+    type: LLMsTxt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,19 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/allianz-engagement-survey.yaml
+# Versioning DERIVED from the OpenAPI servers[] URL (URI-path versioning).
+# No public versioning/deprecation policy, SLA, or status page was retrievable
+# from the provider (www.allianz.com returns 403 to automated requests).
+versioning:
+  scheme: uri-path
+  current: v1
+  evidence: servers[0].url https://api.allianz.com/engagement/v1
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: No RFC 8594 Sunset/Deprecation support could be confirmed.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []
