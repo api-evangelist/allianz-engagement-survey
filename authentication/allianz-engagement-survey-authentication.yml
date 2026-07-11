@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/allianz-engagement-survey.yaml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.allianz.com/oauth2/token
+    scopes: 5
+  description: OAuth2 client credentials for Allianz internal API access
+  sources:
+  - openapi/allianz-engagement-survey.yaml
