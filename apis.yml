@@ -68,6 +68,8 @@ apis:
     baseURL: https://api.allianz.com/engagement/v1
 
 common:
+  - type: OAuthScopes
+    url: scopes/allianz-engagement-survey-scopes.yml
   - url: https://www.allianz.com/
     type: Website
   - url: https://github.com/allianz

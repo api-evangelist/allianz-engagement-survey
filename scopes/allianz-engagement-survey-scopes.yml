@@ -1,0 +1,41 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/allianz-engagement-survey.yaml
+schemes:
+- name: OAuth2
+  source: openapi/allianz-engagement-survey.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.allianz.com/oauth2/token
+  description: OAuth2 client credentials for Allianz internal API access
+scopes:
+- scope: action_plans:write
+  description: Create and manage action plans
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-engagement-survey.yaml
+- scope: analytics:read
+  description: Access survey analytics and reporting
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-engagement-survey.yaml
+- scope: responses:read
+  description: Read anonymized survey responses
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-engagement-survey.yaml
+- scope: surveys:read
+  description: Read survey definitions and configurations
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-engagement-survey.yaml
+- scope: surveys:write
+  description: Create and manage surveys
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-engagement-survey.yaml
