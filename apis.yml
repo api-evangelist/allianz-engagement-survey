@@ -68,6 +68,8 @@ apis:
     baseURL: https://api.allianz.com/engagement/v1
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/allianz-engagement-survey-agentic-access.yml
   - type: DomainSecurity
     url: security/allianz-engagement-survey-domain-security.yml
   - type: Authentication
