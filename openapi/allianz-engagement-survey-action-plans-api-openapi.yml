@@ -1,0 +1,237 @@
+openapi: 3.0.3
+info:
+  title: Allianz Engagement Survey Action Plans API
+  description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
+  version: 1.0.0
+  contact:
+    name: Allianz HR Technology
+    url: https://www.allianz.com/en/careers/working-at-allianz.html
+  x-generated-from: documentation
+servers:
+- url: https://api.allianz.com/engagement/v1
+  description: Allianz Engagement Survey API production server
+security:
+- OAuth2: []
+tags:
+- name: Action Plans
+  description: Action plan tracking and management operations
+paths:
+  /surveys/{survey_id}/action-plans:
+    get:
+      operationId: listActionPlans
+      summary: Allianz Engagement Survey List Action Plans
+      description: Retrieve action plans created in response to survey insights for a given survey.
+      tags:
+      - Action Plans
+      parameters:
+      - name: survey_id
+        in: path
+        required: true
+        description: Unique identifier of the survey
+        schema:
+          type: string
+        example: survey-500123
+      responses:
+        '200':
+          description: Action plans retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlanList'
+              examples:
+                ListActionPlans200Example:
+                  summary: Default listActionPlans 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 12
+                    items:
+                    - plan_id: plan-500111
+                      title: Improve Manager Communication
+                      status: in_progress
+                      owner: Jane Smith
+                      due_date: '2026-09-30'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createActionPlan
+      summary: Allianz Engagement Survey Create Action Plan
+      description: Create an action plan to address findings from a survey.
+      tags:
+      - Action Plans
+      parameters:
+      - name: survey_id
+        in: path
+        required: true
+        description: Unique identifier of the survey
+        schema:
+          type: string
+        example: survey-500123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateActionPlanRequest'
+            examples:
+              CreateActionPlanRequestExample:
+                summary: Default createActionPlan request
+                x-microcks-default: true
+                value:
+                  title: Improve Manager Communication
+                  description: Increase frequency of team meetings and transparency
+                  owner_employee_id: emp-123456
+                  due_date: '2026-09-30'
+      responses:
+        '201':
+          description: Action plan created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionPlan'
+              examples:
+                CreateActionPlan201Example:
+                  summary: Default createActionPlan 201 response
+                  x-microcks-default: true
+                  value:
+                    plan_id: plan-500111
+                    title: Improve Manager Communication
+                    status: not_started
+                    created_at: '2026-04-19T10:00:00Z'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    ActionPlanList:
+      title: ActionPlanList
+      type: object
+      description: List of action plans for a survey
+      properties:
+        total:
+          type: integer
+          description: Total number of action plans
+          example: 12
+        items:
+          type: array
+          description: List of action plan records
+          items:
+            $ref: '#/components/schemas/ActionPlan'
+    CreateActionPlanRequest:
+      title: CreateActionPlanRequest
+      type: object
+      description: Request body for creating a new action plan
+      required:
+      - title
+      - owner_employee_id
+      - due_date
+      properties:
+        title:
+          type: string
+          description: Title of the action plan
+          example: Improve Manager Communication
+        description:
+          type: string
+          description: Description of planned actions
+          example: Increase frequency of team meetings and transparency
+        owner_employee_id:
+          type: string
+          description: Employee ID of the action plan owner
+          example: emp-123456
+        due_date:
+          type: string
+          format: date
+          description: Target completion date
+          example: '2026-09-30'
+    ActionPlan:
+      title: ActionPlan
+      type: object
+      description: An action plan created to address survey findings
+      properties:
+        plan_id:
+          type: string
+          description: Unique identifier for the action plan
+          example: plan-500111
+        survey_id:
+          type: string
+          description: Survey this action plan relates to
+          example: survey-500123
+        title:
+          type: string
+          description: Title of the action plan
+          example: Improve Manager Communication
+        description:
+          type: string
+          description: Detailed description of the planned actions
+          example: Increase frequency of team meetings and transparency
+        status:
+          type: string
+          description: Current status of the action plan
+          enum:
+          - not_started
+          - in_progress
+          - completed
+          - cancelled
+          example: in_progress
+        owner:
+          type: string
+          description: Name of the action plan owner
+          example: Jane Smith
+        due_date:
+          type: string
+          format: date
+          description: Target completion date for the action plan
+          example: '2026-09-30'
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the action plan was created
+          example: '2026-04-19T10:00:00Z'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 client credentials for Allianz internal API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.allianz.com/oauth2/token
+          scopes:
+            surveys:read: Read survey definitions and configurations
+            surveys:write: Create and manage surveys
+            responses:read: Read anonymized survey responses
+            analytics:read: Access survey analytics and reporting
+            action_plans:write: Create and manage action plans

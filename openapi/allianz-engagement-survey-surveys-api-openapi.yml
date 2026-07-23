@@ -1,0 +1,347 @@
+openapi: 3.0.3
+info:
+  title: Allianz Engagement Survey Action Plans Surveys API
+  description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
+  version: 1.0.0
+  contact:
+    name: Allianz HR Technology
+    url: https://www.allianz.com/en/careers/working-at-allianz.html
+  x-generated-from: documentation
+servers:
+- url: https://api.allianz.com/engagement/v1
+  description: Allianz Engagement Survey API production server
+security:
+- OAuth2: []
+tags:
+- name: Surveys
+  description: Survey lifecycle management operations
+paths:
+  /surveys:
+    get:
+      operationId: listSurveys
+      summary: Allianz Engagement Survey List Surveys
+      description: Retrieve a paginated list of engagement surveys with filtering by status, type, and date range.
+      tags:
+      - Surveys
+      parameters:
+      - name: status
+        in: query
+        required: false
+        description: Filter surveys by lifecycle status
+        schema:
+          type: string
+          enum:
+          - draft
+          - active
+          - closed
+          - archived
+        example: active
+      - name: survey_type
+        in: query
+        required: false
+        description: Filter surveys by type
+        schema:
+          type: string
+          enum:
+          - annual
+          - pulse
+          - onboarding
+          - exit
+        example: annual
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of surveys to return
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        example: 20
+      - name: offset
+        in: query
+        required: false
+        description: Number of surveys to skip for pagination
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        example: 0
+      responses:
+        '200':
+          description: Surveys retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SurveyList'
+              examples:
+                ListSurveys200Example:
+                  summary: Default listSurveys 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 5
+                    offset: 0
+                    limit: 20
+                    items:
+                    - survey_id: survey-500123
+                      title: 2026 Global Engagement Survey
+                      survey_type: annual
+                      status: active
+                      created_at: '2026-01-15T10:00:00Z'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSurvey
+      summary: Allianz Engagement Survey Create Survey
+      description: Create a new employee engagement survey with configuration for questions, audience targeting, and scheduling.
+      tags:
+      - Surveys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSurveyRequest'
+            examples:
+              CreateSurveyRequestExample:
+                summary: Default createSurvey request
+                x-microcks-default: true
+                value:
+                  title: 2026 Global Engagement Survey
+                  survey_type: annual
+                  description: Annual employee engagement measurement for all Allianz entities
+                  start_date: '2026-05-01'
+                  end_date: '2026-05-31'
+      responses:
+        '201':
+          description: Survey created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Survey'
+              examples:
+                CreateSurvey201Example:
+                  summary: Default createSurvey 201 response
+                  x-microcks-default: true
+                  value:
+                    survey_id: survey-500123
+                    title: 2026 Global Engagement Survey
+                    survey_type: annual
+                    status: draft
+                    created_at: '2026-04-19T10:00:00Z'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /surveys/{survey_id}:
+    get:
+      operationId: getSurvey
+      summary: Allianz Engagement Survey Get Survey
+      description: Retrieve detailed information about a specific engagement survey.
+      tags:
+      - Surveys
+      parameters:
+      - name: survey_id
+        in: path
+        required: true
+        description: Unique identifier of the survey
+        schema:
+          type: string
+        example: survey-500123
+      responses:
+        '200':
+          description: Survey retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Survey'
+              examples:
+                GetSurvey200Example:
+                  summary: Default getSurvey 200 response
+                  x-microcks-default: true
+                  value:
+                    survey_id: survey-500123
+                    title: 2026 Global Engagement Survey
+                    survey_type: annual
+                    status: active
+                    start_date: '2026-05-01'
+                    end_date: '2026-05-31'
+        '404':
+          description: Survey not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    SurveyList:
+      title: SurveyList
+      type: object
+      description: Paginated list of engagement surveys
+      properties:
+        total:
+          type: integer
+          description: Total number of surveys matching the filter
+          example: 5
+        offset:
+          type: integer
+          description: Current pagination offset
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number returned per page
+          example: 20
+        items:
+          type: array
+          description: List of survey objects
+          items:
+            $ref: '#/components/schemas/Survey'
+    Survey:
+      title: Survey
+      type: object
+      description: An employee engagement survey definition
+      properties:
+        survey_id:
+          type: string
+          description: Unique identifier for the survey
+          example: survey-500123
+        title:
+          type: string
+          description: Title of the survey
+          example: 2026 Global Engagement Survey
+        survey_type:
+          type: string
+          description: Type of engagement survey
+          enum:
+          - annual
+          - pulse
+          - onboarding
+          - exit
+          example: annual
+        status:
+          type: string
+          description: Current lifecycle status of the survey
+          enum:
+          - draft
+          - active
+          - closed
+          - archived
+          example: active
+        description:
+          type: string
+          description: Description of the survey purpose and scope
+          example: Annual employee engagement measurement for all Allianz entities
+        start_date:
+          type: string
+          format: date
+          description: Date when the survey becomes available to participants
+          example: '2026-05-01'
+        end_date:
+          type: string
+          format: date
+          description: Date when the survey closes
+          example: '2026-05-31'
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the survey was created
+          example: '2026-04-19T10:00:00Z'
+        modified_at:
+          type: string
+          format: date-time
+          description: Timestamp when the survey was last modified
+          example: '2026-04-19T10:00:00Z'
+    CreateSurveyRequest:
+      title: CreateSurveyRequest
+      type: object
+      description: Request body for creating a new engagement survey
+      required:
+      - title
+      - survey_type
+      - start_date
+      - end_date
+      properties:
+        title:
+          type: string
+          description: Title of the survey
+          example: 2026 Global Engagement Survey
+        survey_type:
+          type: string
+          description: Type of the survey
+          enum:
+          - annual
+          - pulse
+          - onboarding
+          - exit
+          example: annual
+        description:
+          type: string
+          description: Survey purpose and scope description
+          example: Annual employee engagement measurement
+        start_date:
+          type: string
+          format: date
+          description: Survey open date
+          example: '2026-05-01'
+        end_date:
+          type: string
+          format: date
+          description: Survey close date
+          example: '2026-05-31'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 client credentials for Allianz internal API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.allianz.com/oauth2/token
+          scopes:
+            surveys:read: Read survey definitions and configurations
+            surveys:write: Create and manage surveys
+            responses:read: Read anonymized survey responses
+            analytics:read: Access survey analytics and reporting
+            action_plans:write: Create and manage action plans

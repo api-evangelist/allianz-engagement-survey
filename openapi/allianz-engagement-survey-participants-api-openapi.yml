@@ -1,0 +1,255 @@
+openapi: 3.0.3
+info:
+  title: Allianz Engagement Survey Action Plans Participants API
+  description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
+  version: 1.0.0
+  contact:
+    name: Allianz HR Technology
+    url: https://www.allianz.com/en/careers/working-at-allianz.html
+  x-generated-from: documentation
+servers:
+- url: https://api.allianz.com/engagement/v1
+  description: Allianz Engagement Survey API production server
+security:
+- OAuth2: []
+tags:
+- name: Participants
+  description: Survey participant and invitation management operations
+paths:
+  /surveys/{survey_id}/participants:
+    get:
+      operationId: listParticipants
+      summary: Allianz Engagement Survey List Participants
+      description: Retrieve the list of participants invited to a specific survey.
+      tags:
+      - Participants
+      parameters:
+      - name: survey_id
+        in: path
+        required: true
+        description: Unique identifier of the survey
+        schema:
+          type: string
+        example: survey-500123
+      - name: status
+        in: query
+        required: false
+        description: Filter participants by response status
+        schema:
+          type: string
+          enum:
+          - invited
+          - responded
+          - not_responded
+        example: not_responded
+      responses:
+        '200':
+          description: Participants retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParticipantList'
+              examples:
+                ListParticipants200Example:
+                  summary: Default listParticipants 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 1250
+                    responded: 876
+                    participation_rate: 70.1
+                    items:
+                    - participant_id: part-500456
+                      employee_id: emp-123456
+                      status: responded
+                      invited_at: '2026-05-01T08:00:00Z'
+                      responded_at: '2026-05-03T14:22:00Z'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addParticipants
+      summary: Allianz Engagement Survey Add Participants
+      description: Add employees as participants to a survey and send invitation emails.
+      tags:
+      - Participants
+      parameters:
+      - name: survey_id
+        in: path
+        required: true
+        description: Unique identifier of the survey
+        schema:
+          type: string
+        example: survey-500123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddParticipantsRequest'
+            examples:
+              AddParticipantsRequestExample:
+                summary: Default addParticipants request
+                x-microcks-default: true
+                value:
+                  employee_ids:
+                  - emp-123456
+                  - emp-123457
+                  send_invitation: true
+      responses:
+        '200':
+          description: Participants added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddParticipantsResponse'
+              examples:
+                AddParticipants200Example:
+                  summary: Default addParticipants 200 response
+                  x-microcks-default: true
+                  value:
+                    added: 2
+                    invitation_sent: true
+                    failed: 0
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ParticipantList:
+      title: ParticipantList
+      type: object
+      description: List of survey participants with participation statistics
+      properties:
+        total:
+          type: integer
+          description: Total number of invited participants
+          example: 1250
+        responded:
+          type: integer
+          description: Number of participants who responded
+          example: 876
+        participation_rate:
+          type: number
+          format: double
+          description: Percentage of participants who responded
+          example: 70.1
+        items:
+          type: array
+          description: List of participant records
+          items:
+            $ref: '#/components/schemas/Participant'
+    Participant:
+      title: Participant
+      type: object
+      description: A survey participant record
+      properties:
+        participant_id:
+          type: string
+          description: Unique identifier for the participant record
+          example: part-500456
+        employee_id:
+          type: string
+          description: Allianz employee identifier
+          example: emp-123456
+        status:
+          type: string
+          description: Current response status of the participant
+          enum:
+          - invited
+          - responded
+          - not_responded
+          example: responded
+        invited_at:
+          type: string
+          format: date-time
+          description: Timestamp when the invitation was sent
+          example: '2026-05-01T08:00:00Z'
+        responded_at:
+          type: string
+          format: date-time
+          description: Timestamp when the participant submitted their response
+          example: '2026-05-03T14:22:00Z'
+    AddParticipantsRequest:
+      title: AddParticipantsRequest
+      type: object
+      description: Request body to add participants to a survey
+      required:
+      - employee_ids
+      properties:
+        employee_ids:
+          type: array
+          description: List of employee IDs to add as participants
+          items:
+            type: string
+          example:
+          - emp-123456
+          - emp-123457
+        send_invitation:
+          type: boolean
+          description: Whether to send invitation emails immediately
+          example: true
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    AddParticipantsResponse:
+      title: AddParticipantsResponse
+      type: object
+      description: Result of adding participants to a survey
+      properties:
+        added:
+          type: integer
+          description: Number of participants successfully added
+          example: 2
+        invitation_sent:
+          type: boolean
+          description: Whether invitation emails were sent
+          example: true
+        failed:
+          type: integer
+          description: Number of employees that could not be added
+          example: 0
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 client credentials for Allianz internal API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.allianz.com/oauth2/token
+          scopes:
+            surveys:read: Read survey definitions and configurations
+            surveys:write: Create and manage surveys
+            responses:read: Read anonymized survey responses
+            analytics:read: Access survey analytics and reporting
+            action_plans:write: Create and manage action plans
