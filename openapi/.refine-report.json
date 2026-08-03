@@ -1,0 +1,22 @@
+{
+  "provider": "allianz-engagement-survey",
+  "sources": [
+    "allianz-engagement-survey-action-plans-api-openapi.yml",
+    "allianz-engagement-survey-analytics-api-openapi.yml",
+    "allianz-engagement-survey-participants-api-openapi.yml",
+    "allianz-engagement-survey-responses-api-openapi.yml",
+    "allianz-engagement-survey-surveys-api-openapi.yml"
+  ],
+  "outputs": [
+    "allianz-engagement-survey-action-plans-api-openapi.yml",
+    "allianz-engagement-survey-analytics-api-openapi.yml",
+    "allianz-engagement-survey-participants-api-openapi.yml",
+    "allianz-engagement-survey-responses-api-openapi.yml",
+    "allianz-engagement-survey-surveys-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
