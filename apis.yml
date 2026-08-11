@@ -47,20 +47,12 @@ apis:
     url: https://www.allianz.com/en/careers/working-at-allianz.html
   - type: JSONSchema
     url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-response-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-analytics-schema.json
   - type: JSONStructure
     url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-response-structure.json
   - type: JSONLD
     url: json-ld/allianz-engagement-survey-context.jsonld
   - type: Example
     url: examples/engagement-survey-survey-example.json
-  - type: Example
-    url: examples/engagement-survey-analytics-example.json
   - type: Conformance
     url: conformance/allianz-engagement-survey-conformance.yml
   - type: ErrorCatalog
@@ -81,20 +73,12 @@ apis:
     url: https://www.allianz.com/en/careers/working-at-allianz.html
   - type: JSONSchema
     url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-response-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-analytics-schema.json
   - type: JSONStructure
     url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-response-structure.json
   - type: JSONLD
     url: json-ld/allianz-engagement-survey-context.jsonld
   - type: Example
     url: examples/engagement-survey-survey-example.json
-  - type: Example
-    url: examples/engagement-survey-analytics-example.json
   - type: Conformance
     url: conformance/allianz-engagement-survey-conformance.yml
   - type: ErrorCatalog
@@ -115,20 +99,12 @@ apis:
     url: https://www.allianz.com/en/careers/working-at-allianz.html
   - type: JSONSchema
     url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-response-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-analytics-schema.json
   - type: JSONStructure
     url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-response-structure.json
   - type: JSONLD
     url: json-ld/allianz-engagement-survey-context.jsonld
   - type: Example
     url: examples/engagement-survey-survey-example.json
-  - type: Example
-    url: examples/engagement-survey-analytics-example.json
   - type: Conformance
     url: conformance/allianz-engagement-survey-conformance.yml
   - type: ErrorCatalog
@@ -149,20 +125,12 @@ apis:
     url: https://www.allianz.com/en/careers/working-at-allianz.html
   - type: JSONSchema
     url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-response-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-analytics-schema.json
   - type: JSONStructure
     url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-response-structure.json
   - type: JSONLD
     url: json-ld/allianz-engagement-survey-context.jsonld
   - type: Example
     url: examples/engagement-survey-survey-example.json
-  - type: Example
-    url: examples/engagement-survey-analytics-example.json
   - type: Conformance
     url: conformance/allianz-engagement-survey-conformance.yml
   - type: ErrorCatalog
@@ -183,20 +151,12 @@ apis:
     url: https://www.allianz.com/en/careers/working-at-allianz.html
   - type: JSONSchema
     url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-response-schema.json
-  - type: JSONSchema
-    url: json-schema/engagement-survey-analytics-schema.json
   - type: JSONStructure
     url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-response-structure.json
   - type: JSONLD
     url: json-ld/allianz-engagement-survey-context.jsonld
   - type: Example
     url: examples/engagement-survey-survey-example.json
-  - type: Example
-    url: examples/engagement-survey-analytics-example.json
   - type: Conformance
     url: conformance/allianz-engagement-survey-conformance.yml
   - type: ErrorCatalog
@@ -204,6 +164,10 @@ apis:
   - type: Lifecycle
     url: lifecycle/allianz-engagement-survey-lifecycle.yml
 common:
+  - type: MCPServer
+    url: mcp/allianz-engagement-survey-mcp.yml
+  - type: Overlay
+    url: overlays/allianz-engagement-survey-engagement-survey-api-overlay.yaml
   - type: AgenticAccess
     url: agentic-access/allianz-engagement-survey-agentic-access.yml
   - type: DomainSecurity
