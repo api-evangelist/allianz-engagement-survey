@@ -1,6 +1,5 @@
 aid: allianz-engagement-survey
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/apis.yml
 name: Allianz Engagement Survey
 tags:
   - Analytics
@@ -19,150 +18,148 @@ accessModel:
   label: Self-serve signup
   confidence: medium
   source:
-  - authentication
+    - authentication
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/allianz-engagement-survey.png
 description: >-
-  The Allianz Engagement Survey API enables management of employee engagement
-  surveys across the Allianz organization. It provides capabilities for survey
-  lifecycle management, participant management, response collection, and
-  analytics reporting to support Allianz's global employee experience
-  initiatives.
+  The Allianz Engagement Survey API enables management of employee engagement surveys across the Allianz organization.
+  It provides capabilities for survey lifecycle management, participant management, response collection, and analytics
+  reporting to support Allianz's global employee experience initiatives.
 created: '2024-01-15'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: allianz-engagement-survey:allianz-engagement-survey-action-plans-api
-  name: Allianz Engagement Survey Action Plans API
-  description: Action plan tracking and management operations
-  humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
-  baseURL: https://api.allianz.com/engagement/v1
-  tags:
-  - Action Plans
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-engagement-survey-action-plans-api-openapi.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/careers/working-at-allianz.html
-  - type: JSONSchema
-    url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-engagement-survey-context.jsonld
-  - type: Example
-    url: examples/engagement-survey-survey-example.json
-  - type: Conformance
-    url: conformance/allianz-engagement-survey-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-engagement-survey-problem-types.yml
-  - type: Lifecycle
-    url: lifecycle/allianz-engagement-survey-lifecycle.yml
-- aid: allianz-engagement-survey:allianz-engagement-survey-analytics-api
-  name: Allianz Engagement Survey Analytics API
-  description: Survey analytics, reporting, and insights operations
-  humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
-  baseURL: https://api.allianz.com/engagement/v1
-  tags:
-  - Analytics
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-engagement-survey-analytics-api-openapi.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/careers/working-at-allianz.html
-  - type: JSONSchema
-    url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-engagement-survey-context.jsonld
-  - type: Example
-    url: examples/engagement-survey-survey-example.json
-  - type: Conformance
-    url: conformance/allianz-engagement-survey-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-engagement-survey-problem-types.yml
-  - type: Lifecycle
-    url: lifecycle/allianz-engagement-survey-lifecycle.yml
-- aid: allianz-engagement-survey:allianz-engagement-survey-participants-api
-  name: Allianz Engagement Survey Participants API
-  description: Survey participant and invitation management operations
-  humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
-  baseURL: https://api.allianz.com/engagement/v1
-  tags:
-  - Participants
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-engagement-survey-participants-api-openapi.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/careers/working-at-allianz.html
-  - type: JSONSchema
-    url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-engagement-survey-context.jsonld
-  - type: Example
-    url: examples/engagement-survey-survey-example.json
-  - type: Conformance
-    url: conformance/allianz-engagement-survey-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-engagement-survey-problem-types.yml
-  - type: Lifecycle
-    url: lifecycle/allianz-engagement-survey-lifecycle.yml
-- aid: allianz-engagement-survey:allianz-engagement-survey-responses-api
-  name: Allianz Engagement Survey Responses API
-  description: Survey response submission and retrieval operations
-  humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
-  baseURL: https://api.allianz.com/engagement/v1
-  tags:
-  - Responses
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-engagement-survey-responses-api-openapi.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/careers/working-at-allianz.html
-  - type: JSONSchema
-    url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-engagement-survey-context.jsonld
-  - type: Example
-    url: examples/engagement-survey-survey-example.json
-  - type: Conformance
-    url: conformance/allianz-engagement-survey-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-engagement-survey-problem-types.yml
-  - type: Lifecycle
-    url: lifecycle/allianz-engagement-survey-lifecycle.yml
-- aid: allianz-engagement-survey:allianz-engagement-survey-surveys-api
-  name: Allianz Engagement Survey Surveys API
-  description: Survey lifecycle management operations
-  humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
-  baseURL: https://api.allianz.com/engagement/v1
-  tags:
-  - Surveys
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-engagement-survey-surveys-api-openapi.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/careers/working-at-allianz.html
-  - type: JSONSchema
-    url: json-schema/engagement-survey-survey-schema.json
-  - type: JSONStructure
-    url: json-structure/engagement-survey-survey-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-engagement-survey-context.jsonld
-  - type: Example
-    url: examples/engagement-survey-survey-example.json
-  - type: Conformance
-    url: conformance/allianz-engagement-survey-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-engagement-survey-problem-types.yml
-  - type: Lifecycle
-    url: lifecycle/allianz-engagement-survey-lifecycle.yml
+  - aid: allianz-engagement-survey:allianz-engagement-survey-action-plans-api
+    name: Allianz Engagement Survey Action Plans API
+    description: Action plan tracking and management operations
+    humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
+    baseURL: https://api.allianz.com/engagement/v1
+    tags:
+      - Action Plans
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-engagement-survey-action-plans-api-openapi.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/careers/working-at-allianz.html
+      - type: JSONSchema
+        url: json-schema/engagement-survey-survey-schema.json
+      - type: JSONStructure
+        url: json-structure/engagement-survey-survey-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-engagement-survey-context.jsonld
+      - type: Example
+        url: examples/engagement-survey-survey-example.json
+      - type: Conformance
+        url: conformance/allianz-engagement-survey-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-engagement-survey-problem-types.yml
+      - type: Lifecycle
+        url: lifecycle/allianz-engagement-survey-lifecycle.yml
+  - aid: allianz-engagement-survey:allianz-engagement-survey-analytics-api
+    name: Allianz Engagement Survey Analytics API
+    description: Survey analytics, reporting, and insights operations
+    humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
+    baseURL: https://api.allianz.com/engagement/v1
+    tags:
+      - Analytics
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-engagement-survey-analytics-api-openapi.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/careers/working-at-allianz.html
+      - type: JSONSchema
+        url: json-schema/engagement-survey-survey-schema.json
+      - type: JSONStructure
+        url: json-structure/engagement-survey-survey-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-engagement-survey-context.jsonld
+      - type: Example
+        url: examples/engagement-survey-survey-example.json
+      - type: Conformance
+        url: conformance/allianz-engagement-survey-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-engagement-survey-problem-types.yml
+      - type: Lifecycle
+        url: lifecycle/allianz-engagement-survey-lifecycle.yml
+  - aid: allianz-engagement-survey:allianz-engagement-survey-participants-api
+    name: Allianz Engagement Survey Participants API
+    description: Survey participant and invitation management operations
+    humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
+    baseURL: https://api.allianz.com/engagement/v1
+    tags:
+      - Participants
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-engagement-survey-participants-api-openapi.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/careers/working-at-allianz.html
+      - type: JSONSchema
+        url: json-schema/engagement-survey-survey-schema.json
+      - type: JSONStructure
+        url: json-structure/engagement-survey-survey-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-engagement-survey-context.jsonld
+      - type: Example
+        url: examples/engagement-survey-survey-example.json
+      - type: Conformance
+        url: conformance/allianz-engagement-survey-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-engagement-survey-problem-types.yml
+      - type: Lifecycle
+        url: lifecycle/allianz-engagement-survey-lifecycle.yml
+  - aid: allianz-engagement-survey:allianz-engagement-survey-responses-api
+    name: Allianz Engagement Survey Responses API
+    description: Survey response submission and retrieval operations
+    humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
+    baseURL: https://api.allianz.com/engagement/v1
+    tags:
+      - Responses
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-engagement-survey-responses-api-openapi.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/careers/working-at-allianz.html
+      - type: JSONSchema
+        url: json-schema/engagement-survey-survey-schema.json
+      - type: JSONStructure
+        url: json-structure/engagement-survey-survey-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-engagement-survey-context.jsonld
+      - type: Example
+        url: examples/engagement-survey-survey-example.json
+      - type: Conformance
+        url: conformance/allianz-engagement-survey-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-engagement-survey-problem-types.yml
+      - type: Lifecycle
+        url: lifecycle/allianz-engagement-survey-lifecycle.yml
+  - aid: allianz-engagement-survey:allianz-engagement-survey-surveys-api
+    name: Allianz Engagement Survey Surveys API
+    description: Survey lifecycle management operations
+    humanURL: https://www.allianz.com/en/careers/working-at-allianz.html
+    baseURL: https://api.allianz.com/engagement/v1
+    tags:
+      - Surveys
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-engagement-survey-surveys-api-openapi.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/careers/working-at-allianz.html
+      - type: JSONSchema
+        url: json-schema/engagement-survey-survey-schema.json
+      - type: JSONStructure
+        url: json-structure/engagement-survey-survey-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-engagement-survey-context.jsonld
+      - type: Example
+        url: examples/engagement-survey-survey-example.json
+      - type: Conformance
+        url: conformance/allianz-engagement-survey-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-engagement-survey-problem-types.yml
+      - type: Lifecycle
+        url: lifecycle/allianz-engagement-survey-lifecycle.yml
 common:
   - type: MCPServer
     url: mcp/allianz-engagement-survey-mcp.yml
@@ -184,66 +181,58 @@ common:
     type: SpectralRules
   - url: vocabulary/allianz-engagement-survey-vocabulary.yaml
     type: Vocabulary
-  - url: capabilities/employee-engagement-workflow.yaml
-    type: NaftikoCapability
   - type: Features
     data:
       - name: Survey Lifecycle Management
         description: >-
-          Create, configure, publish, and close employee engagement surveys
-          with full lifecycle tracking and audit capabilities.
+          Create, configure, publish, and close employee engagement surveys with full lifecycle tracking and audit
+          capabilities.
       - name: Participant Management
         description: >-
-          Manage survey participants, send invitations, track response rates,
-          and send reminders to boost participation across business units.
+          Manage survey participants, send invitations, track response rates, and send reminders to boost participation
+          across business units.
       - name: Response Collection
         description: >-
-          Collect structured survey responses with support for multiple
-          question types including Likert scales, open text, and multiple choice.
+          Collect structured survey responses with support for multiple question types including Likert scales, open
+          text, and multiple choice.
       - name: Analytics and Reporting
         description: >-
-          Generate engagement analytics, participation metrics, and comparative
-          reports across departments, regions, and time periods.
+          Generate engagement analytics, participation metrics, and comparative reports across departments, regions, and
+          time periods.
       - name: Segmentation
         description: >-
-          Segment survey results by business unit, geography, role, tenure,
-          and demographic dimensions for targeted insights.
+          Segment survey results by business unit, geography, role, tenure, and demographic dimensions for targeted
+          insights.
       - name: Action Planning
         description: >-
-          Track and manage action plans created in response to survey insights
-          to drive employee experience improvements.
+          Track and manage action plans created in response to survey insights to drive employee experience
+          improvements.
   - type: UseCases
     data:
       - name: Annual Engagement Survey
         description: >-
-          Run company-wide annual employee engagement surveys to measure
-          satisfaction, commitment, and advocacy across all Allianz entities.
+          Run company-wide annual employee engagement surveys to measure satisfaction, commitment, and advocacy across
+          all Allianz entities.
       - name: Pulse Surveys
         description: >-
-          Deploy frequent short pulse surveys to track engagement trends and
-          respond quickly to changing employee sentiment.
+          Deploy frequent short pulse surveys to track engagement trends and respond quickly to changing employee
+          sentiment.
       - name: Onboarding Surveys
         description: >-
-          Capture new employee experience feedback during onboarding to
-          improve the joining experience and early retention.
+          Capture new employee experience feedback during onboarding to improve the joining experience and early
+          retention.
       - name: Exit Surveys
-        description: >-
-          Collect departing employee feedback to understand attrition drivers
-          and improve retention strategies.
+        description: Collect departing employee feedback to understand attrition drivers and improve retention strategies.
   - type: Integrations
     data:
       - name: Workday
         description: >-
-          Integration with Workday HCM for automated participant roster
-          management and organizational hierarchy synchronization.
+          Integration with Workday HCM for automated participant roster management and organizational hierarchy
+          synchronization.
       - name: Microsoft Teams
-        description: >-
-          Survey notifications and reminders delivered through Microsoft Teams
-          to increase employee participation rates.
+        description: Survey notifications and reminders delivered through Microsoft Teams to increase employee participation rates.
       - name: Power BI
-        description: >-
-          Export engagement analytics to Power BI for advanced visualization
-          and executive dashboard reporting.
+        description: Export engagement analytics to Power BI for advanced visualization and executive dashboard reporting.
   - url: https://www.allianz.com/en/press.html
     type: Blog
   - url: packages/allianz-engagement-survey-packages.yml
