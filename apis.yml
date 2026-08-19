@@ -28,7 +28,7 @@ description: >-
   reporting to support Allianz's global employee experience initiatives.
 created: '2024-01-15'
 modified: '2026-06-20'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
   - aid: allianz-engagement-survey:allianz-engagement-survey-action-plans-api
     name: Allianz Engagement Survey Action Plans API
