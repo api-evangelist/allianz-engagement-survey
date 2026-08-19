@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Allianz Engagement Survey Action Plans Participants API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.allianz.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Participants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allianz Engagement Survey List Participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.allianz.com/engagement/v1/surveys/:survey_id/participants",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "survey-500123",
+                "type": "path",
+                "description": "Unique identifier of the survey"
+              },
+              {
+                "name": "status",
+                "value": "not_responded",
+                "type": "query",
+                "description": "Filter participants by response status"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of participants invited to a specific survey."
+        },
+        {
+          "info": {
+            "name": "Allianz Engagement Survey Add Participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.allianz.com/engagement/v1/surveys/:survey_id/participants",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "survey-500123",
+                "type": "path",
+                "description": "Unique identifier of the survey"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add employees as participants to a survey and send invitation emails."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Allianz Engagement Survey Action Plans Analytics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.allianz.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allianz Engagement Survey Get Survey Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.allianz.com/engagement/v1/surveys/:survey_id/analytics",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "survey-500123",
+                "type": "path",
+                "description": "Unique identifier of the survey"
+              },
+              {
+                "name": "segment_by",
+                "value": "business_unit",
+                "type": "query",
+                "description": "Segment analytics by this dimension"
+              }
+            ]
+          },
+          "docs": "Retrieve aggregated engagement analytics and insights for a survey, including participation rates, question scores, and trend comparisons."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

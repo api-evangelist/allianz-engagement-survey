@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Allianz Engagement Survey Action Plans API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.allianz.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Action Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allianz Engagement Survey List Action Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.allianz.com/engagement/v1/surveys/:survey_id/action-plans",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "survey-500123",
+                "type": "path",
+                "description": "Unique identifier of the survey"
+              }
+            ]
+          },
+          "docs": "Retrieve action plans created in response to survey insights for a given survey."
+        },
+        {
+          "info": {
+            "name": "Allianz Engagement Survey Create Action Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.allianz.com/engagement/v1/surveys/:survey_id/action-plans",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "survey-500123",
+                "type": "path",
+                "description": "Unique identifier of the survey"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an action plan to address findings from a survey."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,231 @@
+{
+  "item": [
+    {
+      "id": "707943e5-80ad-41c9-911f-e77293638375",
+      "name": "Responses",
+      "description": {
+        "content": "Survey response submission and retrieval operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2675f3dd-32cb-4c3e-80ce-2a7ca9dacd7a",
+          "name": "Allianz Engagement Survey List Responses",
+          "request": {
+            "name": "Allianz Engagement Survey List Responses",
+            "description": {
+              "content": "Retrieve anonymized survey responses for analysis. Individual responses are never linked to specific employees.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "surveys",
+                ":survey_id",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "business_unit",
+                  "value": "<string>",
+                  "description": "Filter responses by business unit code"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of responses to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) Unique identifier of the survey"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ace4a8f-0929-482b-b01d-7536593e66c9",
+              "name": "Responses retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "surveys",
+                    ":survey_id",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "business_unit",
+                      "value": "BU-DE-001"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) Unique identifier of the survey"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 876,\n  \"items\": [\n    {\n      \"response_id\": \"resp-500789\",\n      \"survey_id\": \"survey-500123\",\n      \"submitted_at\": \"2026-05-03T14:22:00Z\",\n      \"answers\": [\n        {\n          \"question_id\": \"q-001\",\n          \"score\": 4\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cb1d1d6-bcec-40e6-8e65-416190074bc3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "surveys",
+                    ":survey_id",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "business_unit",
+                      "value": "BU-DE-001"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) Unique identifier of the survey"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_request\",\n  \"message\": \"The specified survey_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.allianz.com/engagement/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "surveys:read surveys:write responses:read analytics:read action_plans:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.allianz.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "962a992c-8ff6-4072-af96-a982ffc288c4",
+    "name": "Allianz Engagement Survey Action Plans Responses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.\n\nContact Support:\n Name: Allianz HR Technology",
+      "type": "text/plain"
+    }
+  }
+}

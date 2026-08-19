@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Allianz Engagement Survey Action Plans Responses API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.allianz.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Responses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allianz Engagement Survey List Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.allianz.com/engagement/v1/surveys/:survey_id/responses",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "survey-500123",
+                "type": "path",
+                "description": "Unique identifier of the survey"
+              },
+              {
+                "name": "business_unit",
+                "value": "BU-DE-001",
+                "type": "query",
+                "description": "Filter responses by business unit code"
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Maximum number of responses to return"
+              }
+            ]
+          },
+          "docs": "Retrieve anonymized survey responses for analysis. Individual responses are never linked to specific employees."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

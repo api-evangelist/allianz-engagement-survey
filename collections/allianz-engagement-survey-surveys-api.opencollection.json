@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Allianz Engagement Survey Action Plans Surveys API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.allianz.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Surveys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allianz Engagement Survey List Surveys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.allianz.com/engagement/v1/surveys",
+            "params": [
+              {
+                "name": "status",
+                "value": "active",
+                "type": "query",
+                "description": "Filter surveys by lifecycle status"
+              },
+              {
+                "name": "survey_type",
+                "value": "annual",
+                "type": "query",
+                "description": "Filter surveys by type"
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Maximum number of surveys to return"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Number of surveys to skip for pagination"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of engagement surveys with filtering by status, type, and date range."
+        },
+        {
+          "info": {
+            "name": "Allianz Engagement Survey Create Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.allianz.com/engagement/v1/surveys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new employee engagement survey with configuration for questions, audience targeting, and scheduling."
+        },
+        {
+          "info": {
+            "name": "Allianz Engagement Survey Get Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.allianz.com/engagement/v1/surveys/:survey_id",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "survey-500123",
+                "type": "path",
+                "description": "Unique identifier of the survey"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific engagement survey."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
