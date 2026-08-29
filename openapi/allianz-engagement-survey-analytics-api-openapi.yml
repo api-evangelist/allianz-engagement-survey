@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Allianz Engagement Survey Action Plans Analytics API
   description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
@@ -98,6 +98,29 @@ components:
           type: string
           description: Request identifier for support reference
           example: req-500999
+    QuestionScore:
+      title: QuestionScore
+      type: object
+      description: Score summary for a single survey question
+      properties:
+        question_id:
+          type: string
+          description: Question identifier
+          example: q-001
+        question:
+          type: string
+          description: The survey question text
+          example: I am proud to work for Allianz
+        score:
+          type: number
+          format: double
+          description: Average score on a 1-5 scale
+          example: 4.2
+        favorable:
+          type: number
+          format: double
+          description: Percentage of favorable responses (4-5 on Likert scale)
+          example: 84.0
     SurveyAnalytics:
       title: SurveyAnalytics
       type: object
@@ -127,29 +150,6 @@ components:
           description: Per-question score breakdown
           items:
             $ref: '#/components/schemas/QuestionScore'
-    QuestionScore:
-      title: QuestionScore
-      type: object
-      description: Score summary for a single survey question
-      properties:
-        question_id:
-          type: string
-          description: Question identifier
-          example: q-001
-        question:
-          type: string
-          description: The survey question text
-          example: I am proud to work for Allianz
-        score:
-          type: number
-          format: double
-          description: Average score on a 1-5 scale
-          example: 4.2
-        favorable:
-          type: number
-          format: double
-          description: Percentage of favorable responses (4-5 on Likert scale)
-          example: 84.0
   securitySchemes:
     OAuth2:
       type: oauth2

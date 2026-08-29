@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Allianz Engagement Survey Action Plans Surveys API
   description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
@@ -201,6 +201,43 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CreateSurveyRequest:
+      title: CreateSurveyRequest
+      type: object
+      description: Request body for creating a new engagement survey
+      required:
+      - title
+      - survey_type
+      - start_date
+      - end_date
+      properties:
+        title:
+          type: string
+          description: Title of the survey
+          example: 2026 Global Engagement Survey
+        survey_type:
+          type: string
+          description: Type of the survey
+          enum:
+          - annual
+          - pulse
+          - onboarding
+          - exit
+          example: annual
+        description:
+          type: string
+          description: Survey purpose and scope description
+          example: Annual employee engagement measurement
+        start_date:
+          type: string
+          format: date
+          description: Survey open date
+          example: '2026-05-01'
+        end_date:
+          type: string
+          format: date
+          description: Survey close date
+          example: '2026-05-31'
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -295,43 +332,6 @@ components:
           format: date-time
           description: Timestamp when the survey was last modified
           example: '2026-04-19T10:00:00Z'
-    CreateSurveyRequest:
-      title: CreateSurveyRequest
-      type: object
-      description: Request body for creating a new engagement survey
-      required:
-      - title
-      - survey_type
-      - start_date
-      - end_date
-      properties:
-        title:
-          type: string
-          description: Title of the survey
-          example: 2026 Global Engagement Survey
-        survey_type:
-          type: string
-          description: Type of the survey
-          enum:
-          - annual
-          - pulse
-          - onboarding
-          - exit
-          example: annual
-        description:
-          type: string
-          description: Survey purpose and scope description
-          example: Annual employee engagement measurement
-        start_date:
-          type: string
-          format: date
-          description: Survey open date
-          example: '2026-05-01'
-        end_date:
-          type: string
-          format: date
-          description: Survey close date
-          example: '2026-05-31'
   securitySchemes:
     OAuth2:
       type: oauth2

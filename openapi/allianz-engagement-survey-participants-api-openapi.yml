@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Allianz Engagement Survey Action Plans Participants API
   description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
@@ -156,6 +156,23 @@ components:
           description: List of participant records
           items:
             $ref: '#/components/schemas/Participant'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
     Participant:
       title: Participant
       type: object
@@ -187,6 +204,23 @@ components:
           format: date-time
           description: Timestamp when the participant submitted their response
           example: '2026-05-03T14:22:00Z'
+    AddParticipantsResponse:
+      title: AddParticipantsResponse
+      type: object
+      description: Result of adding participants to a survey
+      properties:
+        added:
+          type: integer
+          description: Number of participants successfully added
+          example: 2
+        invitation_sent:
+          type: boolean
+          description: Whether invitation emails were sent
+          example: true
+        failed:
+          type: integer
+          description: Number of employees that could not be added
+          example: 0
     AddParticipantsRequest:
       title: AddParticipantsRequest
       type: object
@@ -206,40 +240,6 @@ components:
           type: boolean
           description: Whether to send invitation emails immediately
           example: true
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified survey_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
-    AddParticipantsResponse:
-      title: AddParticipantsResponse
-      type: object
-      description: Result of adding participants to a survey
-      properties:
-        added:
-          type: integer
-          description: Number of participants successfully added
-          example: 2
-        invitation_sent:
-          type: boolean
-          description: Whether invitation emails were sent
-          example: true
-        failed:
-          type: integer
-          description: Number of employees that could not be added
-          example: 0
   securitySchemes:
     OAuth2:
       type: oauth2

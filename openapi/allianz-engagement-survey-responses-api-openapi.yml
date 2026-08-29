@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Allianz Engagement Survey Action Plans Responses API
   description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
@@ -94,29 +94,6 @@ components:
           type: string
           description: Request identifier for support reference
           example: req-500999
-    SurveyResponse:
-      title: SurveyResponse
-      type: object
-      description: An anonymized survey response submission
-      properties:
-        response_id:
-          type: string
-          description: Unique identifier for the response
-          example: resp-500789
-        survey_id:
-          type: string
-          description: Survey this response belongs to
-          example: survey-500123
-        submitted_at:
-          type: string
-          format: date-time
-          description: Timestamp when the response was submitted
-          example: '2026-05-03T14:22:00Z'
-        answers:
-          type: array
-          description: List of question answers
-          items:
-            $ref: '#/components/schemas/Answer'
     Answer:
       title: Answer
       type: object
@@ -150,6 +127,29 @@ components:
           description: List of anonymized response records
           items:
             $ref: '#/components/schemas/SurveyResponse'
+    SurveyResponse:
+      title: SurveyResponse
+      type: object
+      description: An anonymized survey response submission
+      properties:
+        response_id:
+          type: string
+          description: Unique identifier for the response
+          example: resp-500789
+        survey_id:
+          type: string
+          description: Survey this response belongs to
+          example: survey-500123
+        submitted_at:
+          type: string
+          format: date-time
+          description: Timestamp when the response was submitted
+          example: '2026-05-03T14:22:00Z'
+        answers:
+          type: array
+          description: List of question answers
+          items:
+            $ref: '#/components/schemas/Answer'
   securitySchemes:
     OAuth2:
       type: oauth2
