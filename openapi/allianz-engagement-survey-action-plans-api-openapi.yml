@@ -121,20 +121,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ActionPlanList:
-      title: ActionPlanList
-      type: object
-      description: List of action plans for a survey
-      properties:
-        total:
-          type: integer
-          description: Total number of action plans
-          example: 12
-        items:
-          type: array
-          description: List of action plan records
-          items:
-            $ref: '#/components/schemas/ActionPlan'
     CreateActionPlanRequest:
       title: CreateActionPlanRequest
       type: object
@@ -205,6 +191,20 @@ components:
           format: date-time
           description: Timestamp when the action plan was created
           example: '2026-04-19T10:00:00Z'
+    ActionPlanList:
+      title: ActionPlanList
+      type: object
+      description: List of action plans for a survey
+      properties:
+        total:
+          type: integer
+          description: Total number of action plans
+          example: 12
+        items:
+          type: array
+          description: List of action plan records
+          items:
+            $ref: '#/components/schemas/ActionPlan'
     ErrorResponse:
       title: ErrorResponse
       type: object

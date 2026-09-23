@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Allianz Engagement Survey Action Plans Surveys API
+  title: Allianz Engagement Survey Surveys API
   description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
   version: 1.0.0
   contact:
@@ -201,6 +201,28 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    SurveyList:
+      title: SurveyList
+      type: object
+      description: Paginated list of engagement surveys
+      properties:
+        total:
+          type: integer
+          description: Total number of surveys matching the filter
+          example: 5
+        offset:
+          type: integer
+          description: Current pagination offset
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number returned per page
+          example: 20
+        items:
+          type: array
+          description: List of survey objects
+          items:
+            $ref: '#/components/schemas/Survey'
     CreateSurveyRequest:
       title: CreateSurveyRequest
       type: object
@@ -238,45 +260,6 @@ components:
           format: date
           description: Survey close date
           example: '2026-05-31'
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified survey_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
-    SurveyList:
-      title: SurveyList
-      type: object
-      description: Paginated list of engagement surveys
-      properties:
-        total:
-          type: integer
-          description: Total number of surveys matching the filter
-          example: 5
-        offset:
-          type: integer
-          description: Current pagination offset
-          example: 0
-        limit:
-          type: integer
-          description: Maximum number returned per page
-          example: 20
-        items:
-          type: array
-          description: List of survey objects
-          items:
-            $ref: '#/components/schemas/Survey'
     Survey:
       title: Survey
       type: object
@@ -332,6 +315,23 @@ components:
           format: date-time
           description: Timestamp when the survey was last modified
           example: '2026-04-19T10:00:00Z'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
   securitySchemes:
     OAuth2:
       type: oauth2

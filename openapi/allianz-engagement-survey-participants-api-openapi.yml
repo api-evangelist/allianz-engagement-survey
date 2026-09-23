@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Allianz Engagement Survey Action Plans Participants API
+  title: Allianz Engagement Survey Participants API
   description: REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation, participant management, response collection, analytics reporting, and action plan tracking across global business units.
   version: 1.0.0
   contact:
@@ -133,6 +133,37 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Participant:
+      title: Participant
+      type: object
+      description: A survey participant record
+      properties:
+        participant_id:
+          type: string
+          description: Unique identifier for the participant record
+          example: part-500456
+        employee_id:
+          type: string
+          description: Allianz employee identifier
+          example: emp-123456
+        status:
+          type: string
+          description: Current response status of the participant
+          enum:
+          - invited
+          - responded
+          - not_responded
+          example: responded
+        invited_at:
+          type: string
+          format: date-time
+          description: Timestamp when the invitation was sent
+          example: '2026-05-01T08:00:00Z'
+        responded_at:
+          type: string
+          format: date-time
+          description: Timestamp when the participant submitted their response
+          example: '2026-05-03T14:22:00Z'
     ParticipantList:
       title: ParticipantList
       type: object
@@ -173,37 +204,6 @@ components:
           type: string
           description: Request identifier for support reference
           example: req-500999
-    Participant:
-      title: Participant
-      type: object
-      description: A survey participant record
-      properties:
-        participant_id:
-          type: string
-          description: Unique identifier for the participant record
-          example: part-500456
-        employee_id:
-          type: string
-          description: Allianz employee identifier
-          example: emp-123456
-        status:
-          type: string
-          description: Current response status of the participant
-          enum:
-          - invited
-          - responded
-          - not_responded
-          example: responded
-        invited_at:
-          type: string
-          format: date-time
-          description: Timestamp when the invitation was sent
-          example: '2026-05-01T08:00:00Z'
-        responded_at:
-          type: string
-          format: date-time
-          description: Timestamp when the participant submitted their response
-          example: '2026-05-03T14:22:00Z'
     AddParticipantsResponse:
       title: AddParticipantsResponse
       type: object
