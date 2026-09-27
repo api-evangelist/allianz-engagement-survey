@@ -77,6 +77,20 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ResponseList:
+      title: ResponseList
+      type: object
+      description: Paginated list of anonymized survey responses
+      properties:
+        total:
+          type: integer
+          description: Total number of responses
+          example: 876
+        items:
+          type: array
+          description: List of anonymized response records
+          items:
+            $ref: '#/components/schemas/SurveyResponse'
     Answer:
       title: Answer
       type: object
@@ -136,20 +150,6 @@ components:
           type: string
           description: Request identifier for support reference
           example: req-500999
-    ResponseList:
-      title: ResponseList
-      type: object
-      description: Paginated list of anonymized survey responses
-      properties:
-        total:
-          type: integer
-          description: Total number of responses
-          example: 876
-        items:
-          type: array
-          description: List of anonymized response records
-          items:
-            $ref: '#/components/schemas/SurveyResponse'
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -201,65 +201,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SurveyList:
-      title: SurveyList
-      type: object
-      description: Paginated list of engagement surveys
-      properties:
-        total:
-          type: integer
-          description: Total number of surveys matching the filter
-          example: 5
-        offset:
-          type: integer
-          description: Current pagination offset
-          example: 0
-        limit:
-          type: integer
-          description: Maximum number returned per page
-          example: 20
-        items:
-          type: array
-          description: List of survey objects
-          items:
-            $ref: '#/components/schemas/Survey'
-    CreateSurveyRequest:
-      title: CreateSurveyRequest
-      type: object
-      description: Request body for creating a new engagement survey
-      required:
-      - title
-      - survey_type
-      - start_date
-      - end_date
-      properties:
-        title:
-          type: string
-          description: Title of the survey
-          example: 2026 Global Engagement Survey
-        survey_type:
-          type: string
-          description: Type of the survey
-          enum:
-          - annual
-          - pulse
-          - onboarding
-          - exit
-          example: annual
-        description:
-          type: string
-          description: Survey purpose and scope description
-          example: Annual employee engagement measurement
-        start_date:
-          type: string
-          format: date
-          description: Survey open date
-          example: '2026-05-01'
-        end_date:
-          type: string
-          format: date
-          description: Survey close date
-          example: '2026-05-31'
     Survey:
       title: Survey
       type: object
@@ -315,6 +256,43 @@ components:
           format: date-time
           description: Timestamp when the survey was last modified
           example: '2026-04-19T10:00:00Z'
+    CreateSurveyRequest:
+      title: CreateSurveyRequest
+      type: object
+      description: Request body for creating a new engagement survey
+      required:
+      - title
+      - survey_type
+      - start_date
+      - end_date
+      properties:
+        title:
+          type: string
+          description: Title of the survey
+          example: 2026 Global Engagement Survey
+        survey_type:
+          type: string
+          description: Type of the survey
+          enum:
+          - annual
+          - pulse
+          - onboarding
+          - exit
+          example: annual
+        description:
+          type: string
+          description: Survey purpose and scope description
+          example: Annual employee engagement measurement
+        start_date:
+          type: string
+          format: date
+          description: Survey open date
+          example: '2026-05-01'
+        end_date:
+          type: string
+          format: date
+          description: Survey close date
+          example: '2026-05-31'
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -332,6 +310,28 @@ components:
           type: string
           description: Request identifier for support reference
           example: req-500999
+    SurveyList:
+      title: SurveyList
+      type: object
+      description: Paginated list of engagement surveys
+      properties:
+        total:
+          type: integer
+          description: Total number of surveys matching the filter
+          example: 5
+        offset:
+          type: integer
+          description: Current pagination offset
+          example: 0
+        limit:
+          type: integer
+          description: Maximum number returned per page
+          example: 20
+        items:
+          type: array
+          description: List of survey objects
+          items:
+            $ref: '#/components/schemas/Survey'
   securitySchemes:
     OAuth2:
       type: oauth2

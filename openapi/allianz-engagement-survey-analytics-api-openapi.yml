@@ -81,46 +81,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    QuestionScore:
-      title: QuestionScore
-      type: object
-      description: Score summary for a single survey question
-      properties:
-        question_id:
-          type: string
-          description: Question identifier
-          example: q-001
-        question:
-          type: string
-          description: The survey question text
-          example: I am proud to work for Allianz
-        score:
-          type: number
-          format: double
-          description: Average score on a 1-5 scale
-          example: 4.2
-        favorable:
-          type: number
-          format: double
-          description: Percentage of favorable responses (4-5 on Likert scale)
-          example: 84.0
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified survey_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
     SurveyAnalytics:
       title: SurveyAnalytics
       type: object
@@ -150,6 +110,46 @@ components:
           description: Per-question score breakdown
           items:
             $ref: '#/components/schemas/QuestionScore'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    QuestionScore:
+      title: QuestionScore
+      type: object
+      description: Score summary for a single survey question
+      properties:
+        question_id:
+          type: string
+          description: Question identifier
+          example: q-001
+        question:
+          type: string
+          description: The survey question text
+          example: I am proud to work for Allianz
+        score:
+          type: number
+          format: double
+          description: Average score on a 1-5 scale
+          example: 4.2
+        favorable:
+          type: number
+          format: double
+          description: Percentage of favorable responses (4-5 on Likert scale)
+          example: 84.0
   securitySchemes:
     OAuth2:
       type: oauth2

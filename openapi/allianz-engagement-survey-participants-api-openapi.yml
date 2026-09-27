@@ -133,6 +133,63 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ParticipantList:
+      title: ParticipantList
+      type: object
+      description: List of survey participants with participation statistics
+      properties:
+        total:
+          type: integer
+          description: Total number of invited participants
+          example: 1250
+        responded:
+          type: integer
+          description: Number of participants who responded
+          example: 876
+        participation_rate:
+          type: number
+          format: double
+          description: Percentage of participants who responded
+          example: 70.1
+        items:
+          type: array
+          description: List of participant records
+          items:
+            $ref: '#/components/schemas/Participant'
+    AddParticipantsResponse:
+      title: AddParticipantsResponse
+      type: object
+      description: Result of adding participants to a survey
+      properties:
+        added:
+          type: integer
+          description: Number of participants successfully added
+          example: 2
+        invitation_sent:
+          type: boolean
+          description: Whether invitation emails were sent
+          example: true
+        failed:
+          type: integer
+          description: Number of employees that could not be added
+          example: 0
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
     Participant:
       title: Participant
       type: object
@@ -164,63 +221,6 @@ components:
           format: date-time
           description: Timestamp when the participant submitted their response
           example: '2026-05-03T14:22:00Z'
-    ParticipantList:
-      title: ParticipantList
-      type: object
-      description: List of survey participants with participation statistics
-      properties:
-        total:
-          type: integer
-          description: Total number of invited participants
-          example: 1250
-        responded:
-          type: integer
-          description: Number of participants who responded
-          example: 876
-        participation_rate:
-          type: number
-          format: double
-          description: Percentage of participants who responded
-          example: 70.1
-        items:
-          type: array
-          description: List of participant records
-          items:
-            $ref: '#/components/schemas/Participant'
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified survey_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
-    AddParticipantsResponse:
-      title: AddParticipantsResponse
-      type: object
-      description: Result of adding participants to a survey
-      properties:
-        added:
-          type: integer
-          description: Number of participants successfully added
-          example: 2
-        invitation_sent:
-          type: boolean
-          description: Whether invitation emails were sent
-          example: true
-        failed:
-          type: integer
-          description: Number of employees that could not be added
-          example: 0
     AddParticipantsRequest:
       title: AddParticipantsRequest
       type: object
