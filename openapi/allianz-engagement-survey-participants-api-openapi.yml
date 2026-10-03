@@ -133,29 +133,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ParticipantList:
-      title: ParticipantList
-      type: object
-      description: List of survey participants with participation statistics
-      properties:
-        total:
-          type: integer
-          description: Total number of invited participants
-          example: 1250
-        responded:
-          type: integer
-          description: Number of participants who responded
-          example: 876
-        participation_rate:
-          type: number
-          format: double
-          description: Percentage of participants who responded
-          example: 70.1
-        items:
-          type: array
-          description: List of participant records
-          items:
-            $ref: '#/components/schemas/Participant'
     AddParticipantsResponse:
       title: AddParticipantsResponse
       type: object
@@ -173,23 +150,25 @@ components:
           type: integer
           description: Number of employees that could not be added
           example: 0
-    ErrorResponse:
-      title: ErrorResponse
+    AddParticipantsRequest:
+      title: AddParticipantsRequest
       type: object
-      description: Standard error response
+      description: Request body to add participants to a survey
+      required:
+      - employee_ids
       properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified survey_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
+        employee_ids:
+          type: array
+          description: List of employee IDs to add as participants
+          items:
+            type: string
+          example:
+          - emp-123456
+          - emp-123457
+        send_invitation:
+          type: boolean
+          description: Whether to send invitation emails immediately
+          example: true
     Participant:
       title: Participant
       type: object
@@ -221,25 +200,46 @@ components:
           format: date-time
           description: Timestamp when the participant submitted their response
           example: '2026-05-03T14:22:00Z'
-    AddParticipantsRequest:
-      title: AddParticipantsRequest
+    ErrorResponse:
+      title: ErrorResponse
       type: object
-      description: Request body to add participants to a survey
-      required:
-      - employee_ids
+      description: Standard error response
       properties:
-        employee_ids:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    ParticipantList:
+      title: ParticipantList
+      type: object
+      description: List of survey participants with participation statistics
+      properties:
+        total:
+          type: integer
+          description: Total number of invited participants
+          example: 1250
+        responded:
+          type: integer
+          description: Number of participants who responded
+          example: 876
+        participation_rate:
+          type: number
+          format: double
+          description: Percentage of participants who responded
+          example: 70.1
+        items:
           type: array
-          description: List of employee IDs to add as participants
+          description: List of participant records
           items:
-            type: string
-          example:
-          - emp-123456
-          - emp-123457
-        send_invitation:
-          type: boolean
-          description: Whether to send invitation emails immediately
-          example: true
+            $ref: '#/components/schemas/Participant'
   securitySchemes:
     OAuth2:
       type: oauth2

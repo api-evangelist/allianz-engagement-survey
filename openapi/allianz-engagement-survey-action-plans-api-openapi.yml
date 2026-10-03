@@ -121,37 +121,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified survey_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
-    ActionPlanList:
-      title: ActionPlanList
-      type: object
-      description: List of action plans for a survey
-      properties:
-        total:
-          type: integer
-          description: Total number of action plans
-          example: 12
-        items:
-          type: array
-          description: List of action plan records
-          items:
-            $ref: '#/components/schemas/ActionPlan'
     ActionPlan:
       title: ActionPlan
       type: object
@@ -196,6 +165,37 @@ components:
           format: date-time
           description: Timestamp when the action plan was created
           example: '2026-04-19T10:00:00Z'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    ActionPlanList:
+      title: ActionPlanList
+      type: object
+      description: List of action plans for a survey
+      properties:
+        total:
+          type: integer
+          description: Total number of action plans
+          example: 12
+        items:
+          type: array
+          description: List of action plan records
+          items:
+            $ref: '#/components/schemas/ActionPlan'
     CreateActionPlanRequest:
       title: CreateActionPlanRequest
       type: object
