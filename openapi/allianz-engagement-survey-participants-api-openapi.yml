@@ -133,23 +133,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AddParticipantsResponse:
-      title: AddParticipantsResponse
-      type: object
-      description: Result of adding participants to a survey
-      properties:
-        added:
-          type: integer
-          description: Number of participants successfully added
-          example: 2
-        invitation_sent:
-          type: boolean
-          description: Whether invitation emails were sent
-          example: true
-        failed:
-          type: integer
-          description: Number of employees that could not be added
-          example: 0
     AddParticipantsRequest:
       title: AddParticipantsRequest
       type: object
@@ -169,37 +152,23 @@ components:
           type: boolean
           description: Whether to send invitation emails immediately
           example: true
-    Participant:
-      title: Participant
+    AddParticipantsResponse:
+      title: AddParticipantsResponse
       type: object
-      description: A survey participant record
+      description: Result of adding participants to a survey
       properties:
-        participant_id:
-          type: string
-          description: Unique identifier for the participant record
-          example: part-500456
-        employee_id:
-          type: string
-          description: Allianz employee identifier
-          example: emp-123456
-        status:
-          type: string
-          description: Current response status of the participant
-          enum:
-          - invited
-          - responded
-          - not_responded
-          example: responded
-        invited_at:
-          type: string
-          format: date-time
-          description: Timestamp when the invitation was sent
-          example: '2026-05-01T08:00:00Z'
-        responded_at:
-          type: string
-          format: date-time
-          description: Timestamp when the participant submitted their response
-          example: '2026-05-03T14:22:00Z'
+        added:
+          type: integer
+          description: Number of participants successfully added
+          example: 2
+        invitation_sent:
+          type: boolean
+          description: Whether invitation emails were sent
+          example: true
+        failed:
+          type: integer
+          description: Number of employees that could not be added
+          example: 0
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -240,6 +209,37 @@ components:
           description: List of participant records
           items:
             $ref: '#/components/schemas/Participant'
+    Participant:
+      title: Participant
+      type: object
+      description: A survey participant record
+      properties:
+        participant_id:
+          type: string
+          description: Unique identifier for the participant record
+          example: part-500456
+        employee_id:
+          type: string
+          description: Allianz employee identifier
+          example: emp-123456
+        status:
+          type: string
+          description: Current response status of the participant
+          enum:
+          - invited
+          - responded
+          - not_responded
+          example: responded
+        invited_at:
+          type: string
+          format: date-time
+          description: Timestamp when the invitation was sent
+          example: '2026-05-01T08:00:00Z'
+        responded_at:
+          type: string
+          format: date-time
+          description: Timestamp when the participant submitted their response
+          example: '2026-05-03T14:22:00Z'
   securitySchemes:
     OAuth2:
       type: oauth2
