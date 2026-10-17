@@ -133,6 +133,77 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Participant:
+      title: Participant
+      type: object
+      description: A survey participant record
+      properties:
+        participant_id:
+          type: string
+          description: Unique identifier for the participant record
+          example: part-500456
+        employee_id:
+          type: string
+          description: Allianz employee identifier
+          example: emp-123456
+        status:
+          type: string
+          description: Current response status of the participant
+          enum:
+          - invited
+          - responded
+          - not_responded
+          example: responded
+        invited_at:
+          type: string
+          format: date-time
+          description: Timestamp when the invitation was sent
+          example: '2026-05-01T08:00:00Z'
+        responded_at:
+          type: string
+          format: date-time
+          description: Timestamp when the participant submitted their response
+          example: '2026-05-03T14:22:00Z'
+    ParticipantList:
+      title: ParticipantList
+      type: object
+      description: List of survey participants with participation statistics
+      properties:
+        total:
+          type: integer
+          description: Total number of invited participants
+          example: 1250
+        responded:
+          type: integer
+          description: Number of participants who responded
+          example: 876
+        participation_rate:
+          type: number
+          format: double
+          description: Percentage of participants who responded
+          example: 70.1
+        items:
+          type: array
+          description: List of participant records
+          items:
+            $ref: '#/components/schemas/Participant'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_request
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified survey_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
     AddParticipantsRequest:
       title: AddParticipantsRequest
       type: object
@@ -169,77 +240,6 @@ components:
           type: integer
           description: Number of employees that could not be added
           example: 0
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_request
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified survey_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
-    ParticipantList:
-      title: ParticipantList
-      type: object
-      description: List of survey participants with participation statistics
-      properties:
-        total:
-          type: integer
-          description: Total number of invited participants
-          example: 1250
-        responded:
-          type: integer
-          description: Number of participants who responded
-          example: 876
-        participation_rate:
-          type: number
-          format: double
-          description: Percentage of participants who responded
-          example: 70.1
-        items:
-          type: array
-          description: List of participant records
-          items:
-            $ref: '#/components/schemas/Participant'
-    Participant:
-      title: Participant
-      type: object
-      description: A survey participant record
-      properties:
-        participant_id:
-          type: string
-          description: Unique identifier for the participant record
-          example: part-500456
-        employee_id:
-          type: string
-          description: Allianz employee identifier
-          example: emp-123456
-        status:
-          type: string
-          description: Current response status of the participant
-          enum:
-          - invited
-          - responded
-          - not_responded
-          example: responded
-        invited_at:
-          type: string
-          format: date-time
-          description: Timestamp when the invitation was sent
-          example: '2026-05-01T08:00:00Z'
-        responded_at:
-          type: string
-          format: date-time
-          description: Timestamp when the participant submitted their response
-          example: '2026-05-03T14:22:00Z'
   securitySchemes:
     OAuth2:
       type: oauth2
