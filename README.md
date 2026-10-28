@@ -1,4 +1,4 @@
-# Allianz Engagement Survey (allianz-engagement-survey)
+# Allianz Engagement Survey
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,139 +66,201 @@
 
 The Allianz Engagement Survey API enables management of employee engagement surveys across the Allianz organization. It provides capabilities for survey lifecycle management, participant management, response collection, and analytics reporting to support Allianz's global employee experience initiatives.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/allianz-engagement-survey/refs/heads/main/apis.yml)
+**Areas:** Analytics · Enterprise · Human Resources · Insurance · Surveys · Employee Experience
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Allianz Engagement Survey on APIs.io
 
-## Tags:
+Everything profiled for Allianz Engagement Survey is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/allianz-engagement-survey/](https://apis.io/providers/allianz-engagement-survey/)** — or go straight to one of the APIs or properties below.
 
- - Analytics, Enterprise, Human Resources, Insurance, Surveys, Employee Experience
+### APIs (5)
 
-## Timestamps
+- [Allianz Engagement Survey Action Plans API](https://apis.io/apis/allianz-engagement-survey/allianz-engagement-survey-action-plans-api/) — Action plan tracking and management operations
+- [Allianz Engagement Survey Analytics API](https://apis.io/apis/allianz-engagement-survey/allianz-engagement-survey-analytics-api/) — Survey analytics, reporting, and insights operations
+- [Allianz Engagement Survey Participants API](https://apis.io/apis/allianz-engagement-survey/allianz-engagement-survey-participants-api/) — Survey participant and invitation management operations
+- [Allianz Engagement Survey Responses API](https://apis.io/apis/allianz-engagement-survey/allianz-engagement-survey-responses-api/) — Survey response submission and retrieval operations
+- [Allianz Engagement Survey Surveys API](https://apis.io/apis/allianz-engagement-survey/allianz-engagement-survey-surveys-api/) — Survey lifecycle management operations
 
-- **Created:** 2024-01-15
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Allianz Engagement Survey API
-REST API for managing the full lifecycle of employee engagement surveys at Allianz. Supports survey creation and configuration, participant management, response collection, results analysis, and reporting across business units and geographies.
+#### MCP servers (1)
 
-**Human URL:** [https://www.allianz.com/en/careers/working-at-allianz.html](https://www.allianz.com/en/careers/working-at-allianz.html)
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags:
+- [allianz-engagement-survey](https://apis.io/servers/allianz-engagement-survey/allianz-engagement-survey/)
 
- - Surveys, Human Resources, Employee Experience, Analytics
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://www.allianz.com/en/careers/working-at-allianz.html)
-- [OpenAPI](openapi/allianz-engagement-survey.yaml)
-- [JSONSchema](json-schema/engagement-survey-survey-schema.json)
-- [JSONSchema](json-schema/engagement-survey-response-schema.json)
-- [JSONSchema](json-schema/engagement-survey-analytics-schema.json)
-- [JSONStructure](json-structure/engagement-survey-survey-structure.json)
-- [JSONStructure](json-structure/engagement-survey-response-structure.json)
-- [JSONLD](json-ld/allianz-engagement-survey-context.jsonld)
-- [Example](examples/engagement-survey-survey-example.json)
-- [Example](examples/engagement-survey-analytics-example.json)
+- [Allianz Engagement Survey Agentic Access](https://apis.io/agentic-access/allianz-engagement-survey/allianz-engagement-survey-agentic-access/)
 
-## Common Properties
+#### JSON Schema (15)
+
+The data models the API reads and writes.
+
+- [ActionPlan](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-action-plan/)
+- [ActionPlanList](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-action-plan-list/)
+- [AddParticipantsRequest](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-add-participants-request/)
+- [AddParticipantsResponse](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-add-participants-response/)
+- [Answer](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-answer/)
+- [CreateActionPlanRequest](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-create-action-plan-request/)
+- [CreateSurveyRequest](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-create-survey-request/)
+- [Participant](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-participant/)
+- [ParticipantList](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-participant-list/)
+- [QuestionScore](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-question-score/)
+- [ResponseList](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-response-list/)
+- [Survey](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-survey/)
+- [SurveyAnalytics](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-survey-analytics/)
+- [SurveyList](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-survey-list/)
+- [SurveyResponse](https://apis.io/schemas/allianz-engagement-survey/engagement-survey-survey-response/)
+
+#### JSON Structure (15)
+
+Data models expressed in JSON Structure.
+
+- [Engagement Survey Action Plan List Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-action-plan-list-structure/)
+- [Engagement Survey Action Plan Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-action-plan-structure/)
+- [Engagement Survey Add Participants Request Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-add-participants-request-structure/)
+- [Engagement Survey Add Participants Response Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-add-participants-response-structure/)
+- [Engagement Survey Answer Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-answer-structure/)
+- [Engagement Survey Create Action Plan Request Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-create-action-plan-request-structure/)
+- [Engagement Survey Create Survey Request Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-create-survey-request-structure/)
+- [Engagement Survey Participant List Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-participant-list-structure/)
+- [Engagement Survey Participant Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-participant-structure/)
+- [Engagement Survey Question Score Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-question-score-structure/)
+- [Engagement Survey Response List Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-response-list-structure/)
+- [Engagement Survey Survey Analytics Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-survey-analytics-structure/)
+- [Engagement Survey Survey List Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-survey-list-structure/)
+- [Engagement Survey Survey Response Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-survey-response-structure/)
+- [Engagement Survey Survey Structure](https://apis.io/json-structure/allianz-engagement-survey/engagement-survey-survey-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Allianz Engagement Survey Context](https://apis.io/jsonld/allianz-engagement-survey/allianz-engagement-survey-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Allianz Engagement Survey Vocabulary](https://apis.io/vocabularies/allianz-engagement-survey/allianz-engagement-survey-vocabulary/)
+
+#### Examples (15)
+
+Example requests and responses.
+
+- [Engagement Survey Action Plan Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-action-plan-example/)
+- [Engagement Survey Action Plan List Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-action-plan-list-example/)
+- [Engagement Survey Add Participants Request Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-add-participants-request-example/)
+- [Engagement Survey Add Participants Response Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-add-participants-response-example/)
+- [Engagement Survey Answer Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-answer-example/)
+- [Engagement Survey Create Action Plan Request Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-create-action-plan-request-example/)
+- [Engagement Survey Create Survey Request Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-create-survey-request-example/)
+- [Engagement Survey Participant Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-participant-example/)
+- [Engagement Survey Participant List Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-participant-list-example/)
+- [Engagement Survey Question Score Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-question-score-example/)
+- [Engagement Survey Response List Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-response-list-example/)
+- [Engagement Survey Survey Analytics Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-survey-analytics-example/)
+- [Engagement Survey Survey Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-survey-example/)
+- [Engagement Survey Survey List Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-survey-list-example/)
+- [Engagement Survey Survey Response Example](https://apis.io/examples/allianz-engagement-survey/engagement-survey-survey-response-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Allianz Engagement Survey Action Plans API](https://apis.io/collections/allianz-engagement-survey/open-allianz-engagement-survey-action-plans-api/)
+- [Allianz Engagement Survey Action Plans Analytics API](https://apis.io/collections/allianz-engagement-survey/open-allianz-engagement-survey-analytics-api/)
+- [Allianz Engagement Survey Action Plans Participants API](https://apis.io/collections/allianz-engagement-survey/open-allianz-engagement-survey-participants-api/)
+- [Allianz Engagement Survey Action Plans Responses API](https://apis.io/collections/allianz-engagement-survey/open-allianz-engagement-survey-responses-api/)
+- [Allianz Engagement Survey Action Plans Surveys API](https://apis.io/collections/allianz-engagement-survey/open-allianz-engagement-survey-surveys-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Allianz Engagement Survey Engagement Survey Api Overlay](https://apis.io/overlays/allianz-engagement-survey/allianz-engagement-survey-engagement-survey-api-overlay/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Allianz Engagement Survey — jsonschema rules](https://apis.io/rules/allianz-engagement-survey/allianz-engagement-survey-jsonschema-spectral-rules/)
+- [Allianz Engagement Survey API Rules](https://apis.io/rules/allianz-engagement-survey/allianz-engagement-survey-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Allianz Engagement Survey Authentication](https://apis.io/security/allianz-engagement-survey/allianz-engagement-survey-authentication/)
+- [Allianz Engagement Survey Domain Security](https://apis.io/security/allianz-engagement-survey/allianz-engagement-survey-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Allianz Engagement Survey Scopes](https://apis.io/scopes/allianz-engagement-survey/allianz-engagement-survey-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.allianz.com/)
-- [GitHubOrganization](https://github.com/allianz)
-- [SpectralRules](rules/allianz-engagement-survey-spectral-rules.yml)
-- [Vocabulary](vocabulary/allianz-engagement-survey-vocabulary.yaml)
-- [NaftikoCapability](capabilities/employee-engagement-workflow.yaml)
+- [Blog](https://www.allianz.com/en/press.html)
+- [GitHub](https://github.com/allianz)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Survey Lifecycle Management | Create, configure, publish, and close employee engagement surveys with full lifecycle tracking and audit capabilities. |
-| Participant Management | Manage survey participants, send invitations, track response rates, and send reminders to boost participation across business units. |
-| Response Collection | Collect structured survey responses with support for multiple question types including Likert scales, open text, and multiple choice. |
-| Analytics and Reporting | Generate engagement analytics, participation metrics, and comparative reports across departments, regions, and time periods. |
-| Segmentation | Segment survey results by business unit, geography, role, tenure, and demographic dimensions for targeted insights. |
-| Action Planning | Track and manage action plans created in response to survey insights to drive employee experience improvements. |
+**Kin Score 24.9** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 28.9 |
+| Contract governance | 31.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 0.0 |
 
-| Name | Description |
-|------|-------------|
-| Annual Engagement Survey | Run company-wide annual employee engagement surveys to measure satisfaction, commitment, and advocacy across all Allianz entities. |
-| Pulse Surveys | Deploy frequent short pulse surveys to track engagement trends and respond quickly to changing employee sentiment. |
-| Onboarding Surveys | Capture new employee experience feedback during onboarding to improve the joining experience and early retention. |
-| Exit Surveys | Collect departing employee feedback to understand attrition drivers and improve retention strategies. |
+**Agent readiness 30.9** — agent-ready
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Workday | Integration with Workday HCM for automated participant roster management and organizational hierarchy synchronization. |
-| Microsoft Teams | Survey notifications and reminders delivered through Microsoft Teams to increase employee participation rates. |
-| Power BI | Export engagement analytics to Power BI for advanced visualization and executive dashboard reporting. |
+**Regulatory alignment 29.8** — Insurance
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/allianz-engagement-survey/](https://apis.io/providers/allianz-engagement-survey/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Allianz Engagement Survey API](openapi/allianz-engagement-survey.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Allianz Engagement Survey: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [engagement-survey-survey-schema.json](json-schema/engagement-survey-survey-schema.json)
-- [engagement-survey-survey-list-schema.json](json-schema/engagement-survey-survey-list-schema.json)
-- [engagement-survey-create-survey-request-schema.json](json-schema/engagement-survey-create-survey-request-schema.json)
-- [engagement-survey-participant-schema.json](json-schema/engagement-survey-participant-schema.json)
-- [engagement-survey-participant-list-schema.json](json-schema/engagement-survey-participant-list-schema.json)
-- [engagement-survey-add-participants-request-schema.json](json-schema/engagement-survey-add-participants-request-schema.json)
-- [engagement-survey-add-participants-response-schema.json](json-schema/engagement-survey-add-participants-response-schema.json)
-- [engagement-survey-survey-response-schema.json](json-schema/engagement-survey-survey-response-schema.json)
-- [engagement-survey-answer-schema.json](json-schema/engagement-survey-answer-schema.json)
-- [engagement-survey-response-list-schema.json](json-schema/engagement-survey-response-list-schema.json)
-- [engagement-survey-survey-analytics-schema.json](json-schema/engagement-survey-survey-analytics-schema.json)
-- [engagement-survey-question-score-schema.json](json-schema/engagement-survey-question-score-schema.json)
-- [engagement-survey-action-plan-schema.json](json-schema/engagement-survey-action-plan-schema.json)
-- [engagement-survey-action-plan-list-schema.json](json-schema/engagement-survey-action-plan-list-schema.json)
-- [engagement-survey-create-action-plan-request-schema.json](json-schema/engagement-survey-create-action-plan-request-schema.json)
-
-### JSON Structure
-
-- [engagement-survey-survey-structure.json](json-structure/engagement-survey-survey-structure.json)
-- [engagement-survey-survey-analytics-structure.json](json-structure/engagement-survey-survey-analytics-structure.json)
-- [engagement-survey-action-plan-structure.json](json-structure/engagement-survey-action-plan-structure.json)
-
-### JSON-LD
-
-- [allianz-engagement-survey-context.jsonld](json-ld/allianz-engagement-survey-context.jsonld)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Allianz Engagement Survey API](capabilities/shared/engagement-survey.yaml) — 8 operations for employee engagement survey management
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Allianz Employee Engagement Workflow](capabilities/employee-engagement-workflow.yaml) | Allianz Engagement Survey API | 8 | HR Business Partner, People Analytics Analyst, Team Manager |
-
-## Vocabulary
-
-- [Allianz Engagement Survey Vocabulary](vocabulary/allianz-engagement-survey-vocabulary.yaml) — Unified taxonomy mapping 5 resources, 4 actions, 1 workflow, and 3 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Allianz Engagement Survey Spectral Rules](rules/allianz-engagement-survey-spectral-rules.yml) — 21 rules across 8 categories enforcing Allianz Engagement Survey API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/allianz-engagement-survey/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
